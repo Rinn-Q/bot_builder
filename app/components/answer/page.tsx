@@ -2,7 +2,7 @@
 "use client"
 import { useRef, useState } from "react";
 
-// MUI
+// import
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { IconButton } from "@mui/material";
 
@@ -20,13 +20,15 @@ type typeAnswer = {
 };
 
 export default function Answer({ width, height, caption, description }: typeAnswer) {
+    // Динамик контентууд states
     const [currentCaption, setCurrentCaption] = useState(caption);
     const [currentDescription, setCurrentDescription] = useState(description);
+
+    // Edit dynamic contents states
     const [editingCaption, setEditingCaption] = useState(false);
     const [editingDescription, setEditingDescription] = useState(false);
 
-    const [isEditBtnClicked, setIsEditBtnClicked] = useState(false);
-
+    // Popup states
     const [openPopup, setOpenPopup] = useState(false);
     const anchorRef = useRef<HTMLButtonElement>(null);
 
@@ -48,7 +50,7 @@ export default function Answer({ width, height, caption, description }: typeAnsw
                 <div className="upper_container">
                     <h1 className="caption_answer">
                         <strong>
-                            {/* {currentCaption} */}
+                            {/* {currentCaption}  */}
                             Яаж төлбөрөө төлөх вэ?
                         </strong>
                     </h1>

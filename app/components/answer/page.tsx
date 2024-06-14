@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 
 // MUI
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { Button, IconButton } from "@mui/material";
+import { IconButton } from "@mui/material";
 
 // Custom components
 import CustomPopper from "../popper/page";

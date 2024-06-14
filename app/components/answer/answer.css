@@ -9,21 +9,15 @@
 
 .description_answer {
     font-size: medium;
-    max-height: 200px;
+    max-height: 150px;
     overflow-y: scroll;
 }
 
-/* @media (min-width: 768px) {
+@media (max-width: 768px) {
     .description_answer {
-        max-height: 30vh;
+        max-height: 90px;
     }
 }
-
-@media (min-width: 1024px) {
-    .description_answer {
-        max-height: 20vh;
-    }
-} */
 
 /* ----------------- */
 

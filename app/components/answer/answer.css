@@ -9,8 +9,20 @@
 
 .description_answer {
     font-size: medium;
+    max-height: 50vh;
     overflow-y: scroll;
-    max-height: 150px;
+}
+
+@media (min-width: 768px) {
+    .description_answer {
+        max-height: 30vh;
+    }
+}
+
+@media (min-width: 1024px) {
+    .description_answer {
+        max-height: 20vh;
+    }
 }
 
 /* ----------------- */
@@ -26,4 +38,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.underside_container {
+    height: 100%;
 }

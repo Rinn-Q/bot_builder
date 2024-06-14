@@ -80,7 +80,7 @@ export default function Container() {
             </div>
             <div className="rounded-xl w-full h-2/5 flex justify-between">
                 <div className="box-shadow w-2/5 p-8 mr-10 rounded-xl">
-                    {/* <Answer width={100} caption="heloo" description="hi" height={100}/> */}
+                    <Answer width={100} caption="heloo" description="hi" height={100} />
                 </div>
                 <div className="box-shadow w-3/5 p-8 rounded-xl">
                     {

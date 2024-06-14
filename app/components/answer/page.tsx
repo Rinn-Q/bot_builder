@@ -7,6 +7,7 @@ import { useState } from "react";
 import "./answer.css";
 
 type typeAnswer = {
+    height: number,
     width: number,
     caption: string,
     description: string
@@ -16,10 +17,9 @@ export default function Answer({ width, caption, description , height}: typeAnsw
 
     const [currentCaption, setCurrentCaption] = useState(caption);
     const [currentDescription, setCurrentDescription] = useState(description);
-
     const [editingCaption, setEditingCaption] = useState(false);
     const [editingDescription, setEditingDescription] = useState(false);
-
+    
     const [isEditBtnClicked, setIsEditBtnClicked] = useState(false);
 
     function handleEditBtnClicked(){

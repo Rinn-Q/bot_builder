@@ -53,22 +53,23 @@ export default function Choice({ width, height , info}: parameterType) {
 
     return (
             <Container maxWidth="sm" sx={{
-                width: {width},
-                height: {height},
-                borderRadius: 10,
+                width: `${width}%`,
+                height: `${height}%`,
+                borderRadius: 4,
                 bgcolor: '#F0FFF1',
-                position: 'relative'
+                position: 'relative',
+                padding: "4px"
             }}>
+                <Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                <Typography variant="h5" component="h1" gutterBottom sx={{ flexGrow: 1, margin: '0 auto' }}>
+                <Typography variant="h6" gutterBottom sx={{ flexGrow: 1, margin: '10 auto' }}>
                 {data?.choice_content}
                 </Typography>
-
                     <IconButton ref={anchorRef} sx={{ ml: 1 }} onClick={handleToggle}>
                         <MoreVertIcon />
                     </IconButton>
                 </Box>
-                <Box sx={{ height: 250, overflowY: 'scroll', '&::-webkit-scrollbar': { display: 'none' } }}>
+                <Box sx={{ width: '100%' ,height: '100%', overflowY: 'scroll', '&::-webkit-scrollbar': { display: 'none' } }}>
                     <List>
                         {data?.children.map((item, index) => (
                             <ListItem key={index}>
@@ -77,7 +78,7 @@ export default function Choice({ width, height , info}: parameterType) {
                                     sx={{
                                         borderRadius: 10,
                                         bgcolor: '#FFFFFF',
-                                        width: '84%',
+                                         width: '100%',
                                         height: '15%',
                                         display: 'flex',
                                         alignItems: 'center',
@@ -89,6 +90,7 @@ export default function Choice({ width, height , info}: parameterType) {
                             </ListItem>
                         ))}
                     </List>
+                </Box>
                 </Box>
                 <CustomPopper open={open} anchorRef={anchorRef} handleClose={handleClose} buttonData={[{title:"Нэмэх",icon: AddBox},{title:"Засах",icon: Edit},{title:"Устгах",icon: Delete},]} />
             </Container>

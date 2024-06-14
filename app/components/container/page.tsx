@@ -69,7 +69,7 @@ export default function Container() {
 
     useEffect(() => {
         fetchChoiceData();
-        fetchAnswerData(61);
+        fetchAnswerData(16);
     }, [])
 
     return (

@@ -8,26 +8,80 @@ import "./answer.css";
 
 type typeAnswer = {
     width: number,
-    height: number,
     caption: string,
     description: string
 }
 
-function handleEditBtn(){
-
-}
-
 export default function Answer({ width, caption, description }: typeAnswer) {
 
+    const [currentCaption, setCurrentCaption] = useState(caption);
+    const [currentDescription, setCurrentDescription] = useState(description);
+
     const [editingCaption, setEditingCaption] = useState(false);
+    const [editingDescription, setEditingDescription] = useState(false);
+
+    const [isEditBtnClicked, setIsEditBtnClicked] = useState(false);
+
+    function handleEditBtnClicked(){
+        if(isEditBtnClicked) 
+            setIsEditBtnClicked(false);
+        else 
+            setIsEditBtnClicked(true);
+    }
+    function handleEditCaption(){
+        if(editingCaption) 
+            setEditingCaption(false);
+        else 
+            setEditingCaption(true);
+    }
+    function handleEditDescription(){
+        if(editingDescription) 
+            setEditingDescription(false);
+        else 
+            setEditingDescription(true);
+    }
+    
 
     return (
         <div className="container circle_edge" style={{ width: width }}>
             <div className="container-content circle_edge">
-                {editingCaption === false ? <div className="editBtn" onClick={handleEditBtn}></div> : <input type="text" id="editCaption" name="editCaption"/>}
-                <h1 className="caption_answer"><strong>{caption}</strong></h1>
+                <div className="editBtn" onMouseOver={() => setIsEditBtnClicked(true)}></div>
+                
+                {isEditBtnClicked &&  
+                <div className="container_editContentBtns">
+                    <button className="editContentBtns editCaptionBtn" onClick={handleEditCaption}>Гарчиг засах</button>
+                    <br />
+                    <div className="horizontal_line"></div>
+                    <button className="editContentBtns editDescriptionBtn" onClick={handleEditDescription}>Тайлбар засах</button>
+                </div>}
+
+                {editingCaption === false ? 
+                <h1 className="caption_answer"><strong>{currentCaption}</strong></h1>
+                : <input 
+                    type="text" 
+                    id="editCaption" 
+                    name="editCaption"
+                    value={currentCaption}
+                    onChange = {(e) => setCurrentCaption(e.target.value)}
+                    onKeyDown={(e) => {
+                        if(e.key === "Enter")  setEditingCaption(false)
+                    } }
+                    className="circle_edge"
+                    />}
                 <br />
-                <p className="description_answer">{description}</p>
+                {editingDescription === false ? <p className="description_answer">{currentDescription}</p> 
+                :
+                <input 
+                type="text" 
+                id="editDescription" 
+                name="editDescription"
+                value={currentDescription}
+                onChange = {(e) => setCurrentDescription(e.target.value)}
+                onKeyDown={(e) => {
+                if(e.key === "Enter")  setEditingDescription(false)
+                } }
+                className="circle_edge"
+                />}    
             </div>
         </div>
     )

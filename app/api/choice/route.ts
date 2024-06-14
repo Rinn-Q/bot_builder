@@ -5,11 +5,7 @@ export async function GET(req: Request) {
     try {
         const choices = await prisma.choice.findMany();
 
-        return Response.json({
-            data: {
-                choices
-            }
-        });
+        return Response.json(choices);
     } catch (error: any) {
         return Response.json({
             status: 500,

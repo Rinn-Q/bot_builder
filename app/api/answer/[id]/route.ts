@@ -21,11 +21,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
                     status: 404
                 })
         }
-        return Response.json({
-            data: {
-                answer
-            }
-        })
+        return Response.json(answer)
 
     } catch (error: any) {
         console.error("Хариултыг авахад алдаа гарлаа:", error);

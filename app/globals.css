@@ -2,15 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-  }
-  
-  #__next {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: blanchedalmond;
+}
+
+#__next {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

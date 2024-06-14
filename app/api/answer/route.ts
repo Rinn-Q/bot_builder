@@ -4,11 +4,7 @@ const prisma = new PrismaClient();
 export async function GET(req: Request) {
     try {
         const answers = await prisma.answer.findMany();
-        return Response.json({
-            data: {
-                answers
-            }
-        });
+        return Response.json(answers);
     } catch (error: any) {
         console.error("Хариултуудыг авахад алдаа гарлаа:", error);
         return Response.json({

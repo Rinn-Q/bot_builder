@@ -5,7 +5,7 @@ import Answer from "../answer/page"
 import './container.css'
 import EditAnswer from '../form/answer/EditAnswer'
 
-interface Choice {
+interface Choices {
     id: number,
     choice_content: string,
     parent_id: number,
@@ -23,16 +23,16 @@ interface Answer {
 }
 
 export default function Container() {
-    const [firstChoice, setFirstChoice] = useState<Choice[]>([]);
-    const [lastChoice, setlastChoice] = useState<Choice[]>([]);
-    const [choice, setChoice] = useState<Choice[]>([]);
+    const [firstChoice, setFirstChoice] = useState<Choices[]>([]);
+    const [lastChoice, setlastChoice] = useState<Choices[]>([]);
+    const [choice, setChoice] = useState<Choices[]>([]);
     const [answer, setAnswer] = useState<Answer>();
 
     // const [firstChoice, setChoicesWithChildren] = useState<Choice[]>([]);
 
     const fetchChoiceData = async () => {
         try {
-            const res = await fetch(`https://176b-66-181-164-203.ngrok-free.app/api/choice/7`, {
+            const res = await fetch(`https://5eb1-66-181-164-203.ngrok-free.app/api/choice/7`, {
                 headers: {
                     'ngrok-skip-browser-warning': 'true'
                 },
@@ -43,7 +43,7 @@ export default function Container() {
                 throw new Error(`HTTP error! status: ${res.status}`);
             }
 
-            const data: { choicesWithChildren: Choice[] } = await res.json();
+            const data: { choicesWithChildren: Choices[] } = await res.json();
             setFirstChoice(data.choicesWithChildren);
         } catch (error) {
             console.log(`Error fetching choice data: ${error}`);
@@ -76,12 +76,12 @@ export default function Container() {
         <div className="w-full h-full">
             <div className="rounded-xl box-shadow w-full h-1/2 mb-5 p-8 flex justify-between">
                 {firstChoice.map((item) => (
-                    <Answer key={item.id} width={18} caption={item.choice_content} description="" height={100} />
+                    <Choice key={item.id} width={400} info={item} height={350} />
                 ))}
             </div>
             <div className="rounded-xl w-full h-2/5 flex justify-between">
                 <div className="box-shadow w-2/5 p-8 mr-10 rounded-xl">
-                    {/* <Answer width={100} caption="heloo" description="hi" height={100}/> */}
+                    <Answer width={100} caption="heloo" description="hi" height={100} />
                 </div>
                 <div className="box-shadow w-3/5 p-8 rounded-xl">
                     {
@@ -93,7 +93,7 @@ export default function Container() {
                     }
                 </div>
             </div>
-            <EditAnswer answer="sadf" choice="sadfgh"/>
+            {/* <EditAnswer answer="sadf" choice="sadfgh"/> */}
         </div>
     )
 }

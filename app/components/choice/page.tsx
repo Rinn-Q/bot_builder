@@ -1,8 +1,8 @@
 'use client'
 import * as React from 'react';
-import MenuItem from '@mui/material/MenuItem';
-import { Container, Typography, ListItem, List, Box, IconButton, ButtonBase, MenuList, Popper, Paper, Grow, ClickAwayListener } from '@mui/material';
+import { Container, Typography, ListItem, List, Box, IconButton, ButtonBase } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import CustomPopper from '../popper/page';
 
 export default function Choice() {
     const [open, setOpen] = React.useState(false);
@@ -11,16 +11,18 @@ export default function Choice() {
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
     };
+
     const handleClose = (event: Event | React.SyntheticEvent) => {
         if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
             return;
         }
         setOpen(false);
     };
+
     const prevOpen = React.useRef(open);
     React.useEffect(() => {
         if (prevOpen.current === true && open === false) {
-            anchorRef.current!.focus();
+            anchorRef.current?.focus();
         }
         prevOpen.current = open;
     }, [open]);
@@ -89,32 +91,7 @@ export default function Choice() {
                         ))}
                     </List>
                 </Box>
-                <Popper
-                    open={open}
-                    anchorEl={anchorRef.current}
-                    placement="bottom-end"
-                    transition
-                    disablePortal
-                >
-                    {({ TransitionProps, placement }) => (
-                        <Grow
-                            {...TransitionProps}
-                            style={{
-                                transformOrigin: placement === 'bottom-end' ? 'right top' : 'right bottom',
-                            }}
-                        >
-                            <Paper>
-                                <ClickAwayListener onClickAway={handleClose}>
-                                    <MenuList autoFocusItem={open} id="composition-menu" aria-labelledby="composition-button">
-                                        <MenuItem onClick={handleClose}>Profile</MenuItem>
-                                        <MenuItem onClick={handleClose}>My account</MenuItem>
-                                        <MenuItem onClick={handleClose}>Logout</MenuItem>
-                                    </MenuList>
-                                </ClickAwayListener>
-                            </Paper>
-                        </Grow>
-                    )}
-                </Popper>
+                <CustomPopper open={open} anchorRef={anchorRef} handleClose={handleClose} />
             </Container>
     );
 }

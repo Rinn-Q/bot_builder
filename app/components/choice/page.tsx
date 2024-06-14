@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Container, Typography, ListItem, List, Box, IconButton, ButtonBase } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CustomPopper from '../popper/page';
+import {AddBox,Edit,Delete } from '@mui/icons-material';
 
 interface ChoiceModel {
     id: number,
@@ -89,7 +90,7 @@ export default function Choice({ width, height , info}: parameterType) {
                         ))}
                     </List>
                 </Box>
-                <CustomPopper open={open} anchorRef={anchorRef} handleClose={handleClose} />
+                <CustomPopper open={open} anchorRef={anchorRef} handleClose={handleClose} buttonData={[{title:"Нэмэх",icon: AddBox},{title:"Засах",icon: Edit},{title:"Устгах",icon: Delete},]} />
             </Container>
     );
 }

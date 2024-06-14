@@ -1,27 +1,13 @@
-'use client'
-
 import * as React from 'react';
-import { Popper, Paper, Grow, ClickAwayListener, MenuList, MenuItem, Icon, SvgIconTypeMap } from '@mui/material';
-import { OverridableComponent } from '@mui/material/OverridableComponent';
-
-interface ButtonProperties{
-    title : String,
-    icon : OverridableComponent<SvgIconTypeMap<{}, "svg">>,
-}
+import { Popper, Paper, Grow, ClickAwayListener, MenuList, MenuItem } from '@mui/material';
 
 interface CustomPopperProps {
     open: boolean;
     anchorRef: React.RefObject<HTMLButtonElement>;
     handleClose: (event: Event | React.SyntheticEvent) => void;
-    buttonData : Array<ButtonProperties>
 }
 
-const CustomPopper: React.FC<CustomPopperProps> = ({ open, anchorRef, handleClose,buttonData }) => {
-    const [ data , setButtonData ] = React.useState<ButtonProperties[]>([]);
-
-    React.useEffect(() => {
-        setButtonData(buttonData);
-    }, []);
+const CustomPopper: React.FC<CustomPopperProps> = ({ open, anchorRef, handleClose }) => {
     return (
         <Popper
             open={open}
@@ -40,14 +26,10 @@ const CustomPopper: React.FC<CustomPopperProps> = ({ open, anchorRef, handleClos
                     <Paper>
                         <ClickAwayListener onClickAway={handleClose}>
                             <MenuList autoFocusItem={open} id="composition-menu" aria-labelledby="composition-button">
-                                {data?.map((e)=>(
-                                    <MenuItem onClick={handleClose} sx={{margin:1}} >
-                                    <e.icon></e.icon>
-                                    {e.title}
-                                    </MenuItem>
-                                )
-                                )}
-                        </MenuList>
+                                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                                <MenuItem onClick={handleClose}>My account</MenuItem>
+                                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                            </MenuList>
                         </ClickAwayListener>
                     </Paper>
                 </Grow>

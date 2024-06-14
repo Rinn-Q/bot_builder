@@ -43,8 +43,8 @@ export default function Answer({ width, caption, description , height}: typeAnsw
     
 
     return (
-        <div className="container circle_edge" style={{ width: `${width}%` , height: `${height}%` }}>
-            <div className="container-content circle_edge">
+        // <div className="container circle_edge" style={{ width: `${width}%` , height: `${height}%` }}>
+            <div className="container-content circle_edge" style={{ width: `${width}%` , height: `${height}%` }}>
                 <div className="editBtn" onMouseOver={() => setIsEditBtnClicked(true)}></div>
                 
                 {isEditBtnClicked &&  
@@ -83,6 +83,6 @@ export default function Answer({ width, caption, description , height}: typeAnsw
                 className="circle_edge"
                 />}    
             </div>
-        </div>
+        // </div>
     )
 }

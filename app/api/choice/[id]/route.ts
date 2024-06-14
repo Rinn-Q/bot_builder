@@ -11,14 +11,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
             }
         });
 
-        return Response.json({
-            data: {
-                choice
-            }
-        }, {
-            status: 200,
-            headers: { 'Content-Type': 'application/json' }
-        });
+        return Response.json(choice);
 
     } catch (error: any) {
         return Response.json({

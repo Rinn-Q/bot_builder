@@ -26,9 +26,9 @@ const CustomPopper: React.FC<CustomPopperProps> = ({ open, anchorRef, handleClos
                     <Paper>
                         <ClickAwayListener onClickAway={handleClose}>
                             <MenuList autoFocusItem={open} id="composition-menu" aria-labelledby="composition-button">
-                                <MenuItem onClick={handleClose}>Нэмэх</MenuItem>
-                                <MenuItem onClick={handleClose}>Засах</MenuItem>
-                                <MenuItem onClick={handleClose}>Устгах</MenuItem>
+                                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                                <MenuItem onClick={handleClose}>My account</MenuItem>
+                                <MenuItem onClick={handleClose}>Logout</MenuItem>
                             </MenuList>
                         </ClickAwayListener>
                     </Paper>

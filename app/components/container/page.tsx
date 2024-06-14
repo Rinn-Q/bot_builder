@@ -32,7 +32,7 @@ export default function Container() {
 
     const fetchChoiceData = async () => {
         try {
-            const res = await fetch(`https://5eb1-66-181-164-203.ngrok-free.app/api/choice/7`, {
+            const res = await fetch(`https://8560-66-181-164-203.ngrok-free.app/api/choice/7`, {
                 headers: {
                     'ngrok-skip-browser-warning': 'true'
                 },
@@ -54,7 +54,7 @@ export default function Container() {
 
     const fetchAnswerData = async (id: number) => {
         try {
-            const res = await fetch(`https://176b-66-181-164-203.ngrok-free.app/api/answer${id}`, {
+            const res = await fetch(`https://8560-66-181-164-203.ngrok-free.app/api/answer${id}`, {
                 headers: {
                     'ngrok-skip-browser-warning': 'true'
                 },
@@ -69,7 +69,7 @@ export default function Container() {
 
     useEffect(() => {
         fetchChoiceData();
-        fetchAnswerData(16);
+        fetchAnswerData(61);
     }, [])
 
     return (

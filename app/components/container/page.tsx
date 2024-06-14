@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from "react"
+import React , { useState , useEffect } from "react"
 import Choice from "../choice/page"
 import Answer from "../answer/page"
 import './container.css'
@@ -22,10 +22,10 @@ interface Answer {
 }
 
 export default function Container() {
-    const [firstChoice, setFirstChoice] = useState<Choice[]>([]);
-    const [lastChoice, setlastChoice] = useState<Choice[]>([]);
-    const [choice, setChoice] = useState<Choice[]>([]);
-    const [answer, setAnswer] = useState<Answer>();
+    const [ firstChoice , setFirstChoice ] = useState<Choice[]>([]);
+    const [ lastChoice , setlastChoice ] = useState<Choice[]>([]);
+    const [ choice , setChoice ] = useState<Choice[]>([]);
+    const [ answer , setAnswer ] = useState<Answer>();
 
     // const [firstChoice, setChoicesWithChildren] = useState<Choice[]>([]);
 
@@ -37,7 +37,7 @@ export default function Container() {
                 },
                 method: "GET"
             });
-
+            
             if (!res.ok) {
                 throw new Error(`HTTP error! status: ${res.status}`);
             }
@@ -59,14 +59,14 @@ export default function Container() {
                 },
                 method: "GET"
             });
-            const answerData: Answer = await res.json();
+            const answerData : Answer = await res.json();
             setAnswer(answerData);
         } catch (error) {
             console.log(`Error fetching choice Data : ${error}`);
         }
     }
 
-    useEffect(() => {
+    useEffect (() => {
         fetchChoiceData();
         fetchAnswerData(61);
     }, [])
@@ -74,20 +74,20 @@ export default function Container() {
     return (
         <div className="w-full h-full">
             <div className="rounded-xl box-shadow w-full h-1/2 mb-5 p-8 flex justify-between">
-                {firstChoice.map((item) => (
-                    <Answer key={item.id} width={18} caption={item.choice_content} description="" height={100} />
-                ))}
+              { firstChoice.map((item) => (
+                <Answer key={item.id} width={18} caption={item.choice_content} description="" height={100} />
+              ))}
             </div>
             <div className="rounded-xl w-full h-2/5 flex justify-between">
                 <div className="box-shadow w-2/5 p-8 mr-10 rounded-xl">
-                    <Answer width={100} caption="heloo" description="hi" height={100} />
+                    <Answer width={100} caption="heloo" description="hi" height={100}/>
                 </div>
                 <div className="box-shadow w-3/5 p-8 rounded-xl">
                     {
                         answer ? (
-                            <Answer width={100} caption="" description={answer.answer_content} height={100} />
+                            <Answer width={100} caption="" description={answer.answer_content} height={100}/>
                         ) : (
-                            <Answer width={100} caption="" description="Хариулт олдсонгүй" height={100} />
+                            <Answer width={100} caption="" description="Хариулт олдсонгүй" height={100}/>
                         )
                     }
                 </div>

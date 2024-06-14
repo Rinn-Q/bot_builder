@@ -17,12 +17,12 @@ function handleEditBtn(){
 
 }
 
-export default function Answer({ width, caption, description }: typeAnswer) {
+export default function Answer({ width, caption, description , height}: typeAnswer) {
 
     const [editingCaption, setEditingCaption] = useState(false);
 
     return (
-        <div className="container circle_edge" style={{ width: width }}>
+        <div className="container circle_edge" style={{ width: `${width}%` , height: `${height}%` }}>
             <div className="container-content circle_edge">
                 {editingCaption === false ? <div className="editBtn" onClick={handleEditBtn}></div> : <input type="text" id="editCaption" name="editCaption"/>}
                 <h1 className="caption_answer"><strong>{caption}</strong></h1>

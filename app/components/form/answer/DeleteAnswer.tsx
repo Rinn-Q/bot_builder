@@ -21,7 +21,6 @@ export default function EditAnswer(props: EditAnswerProps) {
 
 // -----------------------------------------------BUTTON handlers----------------------------------------------------------
     const clickCancel= () => {
-        
         setOpen(false)
     }
 

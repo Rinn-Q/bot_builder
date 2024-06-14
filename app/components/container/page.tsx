@@ -68,17 +68,17 @@ export default function Container() {
     }, [])
 
     return (
-        <div className="rounded-2xl shadow-md w-full h-full p-2">
-            <div className="rounded-xl shadow-md w-full h-64 mb-5 p-2 flex justify-between">
+        <div className="w-full h-full">
+            <div className="rounded-xl box-shadow w-full h-1/2 mb-5 p-8 flex justify-between">
               {[...Array(5)].map((_, index) => (
                 <Answer key={index} width={18} caption="hello" description="hi" height={100} />
               ))}
             </div>
-            <div className="rounded-xl w-full h-72 flex justify-between">
-                <div className="shadow-md w-2/5 p-4 mr-2 rounded-xl">
+            <div className="rounded-xl w-full h-2/5 flex justify-between">
+                <div className="box-shadow w-2/5 p-8 mr-10 rounded-xl">
                     <Answer width={100} caption="heloo" description="hi" height={100}/>
                 </div>
-                <div className="shadow-md w-3/5 p-4 rounded-xl">
+                <div className="box-shadow w-3/5 p-8 rounded-xl">
                     <Answer width={100} caption="heloo" description="hi" height={100}/>
                 </div>
             </div>

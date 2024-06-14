@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react"
 import Choice from "../choice/page"
 import Answer from "../answer/page"
 import './container.css'
+import EditAnswer from '../form/answer/EditAnswer'
 
 interface Choice {
     id: number,
@@ -92,6 +93,7 @@ export default function Container() {
                     }
                 </div>
             </div>
+            <EditAnswer answer="sadf" choice="sadfgh"/>
         </div>
     )
 }

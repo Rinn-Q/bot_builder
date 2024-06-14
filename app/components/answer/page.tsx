@@ -12,10 +12,7 @@ type typeAnswer = {
     description: string
 }
 
-export default function Answer({ width, caption, description }: typeAnswer) {
-
-    const [currentCaption, setCurrentCaption] = useState(caption);
-    const [currentDescription, setCurrentDescription] = useState(description);
+export default function Answer({ width, caption, description , height}: typeAnswer) {
 
     const [editingCaption, setEditingCaption] = useState(false);
     const [editingDescription, setEditingDescription] = useState(false);
@@ -43,7 +40,7 @@ export default function Answer({ width, caption, description }: typeAnswer) {
     
 
     return (
-        <div className="container circle_edge" style={{ width: width }}>
+        <div className="container circle_edge" style={{ width: `${width}%` , height: `${height}%` }}>
             <div className="container-content circle_edge">
                 <div className="editBtn" onMouseOver={() => setIsEditBtnClicked(true)}></div>
                 

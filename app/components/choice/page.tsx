@@ -92,5 +92,5 @@ export default function Choice({ width, height , info}: parameterType) {
                 </Box>
                 <CustomPopper open={open} anchorRef={anchorRef} handleClose={handleClose} buttonData={[{title:"Нэмэх",icon: AddBox},{title:"Засах",icon: Edit},{title:"Устгах",icon: Delete},]} />
             </Container>
-    );
+    )
 }

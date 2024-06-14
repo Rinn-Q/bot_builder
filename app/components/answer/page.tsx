@@ -14,6 +14,9 @@ type typeAnswer = {
 
 export default function Answer({ width, caption, description , height}: typeAnswer) {
 
+    const [currentCaption, setCurrentCaption] = useState(caption);
+    const [currentDescription, setCurrentDescription] = useState(description);
+
     const [editingCaption, setEditingCaption] = useState(false);
     const [editingDescription, setEditingDescription] = useState(false);
 

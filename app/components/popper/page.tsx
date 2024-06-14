@@ -47,7 +47,7 @@ const CustomPopper: React.FC<CustomPopperProps> = ({ open, anchorRef, handleClos
                                     </MenuItem>
                                 )
                                 )}
-                            </MenuList>
+                        </MenuList>
                         </ClickAwayListener>
                     </Paper>
                 </Grow>

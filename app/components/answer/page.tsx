@@ -5,6 +5,8 @@ import { useRef, useState } from "react";
 // MUI
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { IconButton } from "@mui/material";
+import {Edit,Delete } from '@mui/icons-material';
+
 
 // Custom components
 import CustomPopper from "../popper/page";
@@ -55,7 +57,7 @@ export default function Answer({ width, height, caption, description }: typeAnsw
                     <IconButton ref={anchorRef} sx={{ ml: 1 }} onClick={handleToggle}>
                         <MoreVertIcon />
                     </IconButton>
-                    <CustomPopper open={openPopup} anchorRef={anchorRef} handleClose={handleClose} />
+                    <CustomPopper open={openPopup} anchorRef={anchorRef} handleClose={handleClose} buttonData={[{title:"Засах",icon: Edit},{title:"Устгах",icon: Delete}]} />
                 </div>
 
                 <div className="underside_container">

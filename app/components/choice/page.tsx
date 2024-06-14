@@ -60,9 +60,10 @@ export default function Choice({ width, height , info}: parameterType) {
                 position: 'relative'
             }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                    <Typography variant="h5" component="h1" gutterBottom sx={{ flexGrow: 1, textAlign: 'center' }}>
-                        {data?.choice_content}
-                    </Typography>
+                <Typography variant="h5" component="h1" gutterBottom sx={{ flexGrow: 1, margin: '0 auto' }}>
+                {data?.choice_content}
+                </Typography>
+
                     <IconButton ref={anchorRef} sx={{ ml: 1 }} onClick={handleToggle}>
                         <MoreVertIcon />
                     </IconButton>
@@ -76,15 +77,14 @@ export default function Choice({ width, height , info}: parameterType) {
                                     sx={{
                                         borderRadius: 10,
                                         bgcolor: '#FFFFFF',
-                                        width: '100%',
-                                        height: 50,
+                                        width: '84%',
+                                        height: '15%',
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'flex-start',
                                         padding: '0 16px',
-                                    }}
-                                >
-                                    <Box>{item.choice_content}</Box>
+                                    }}>
+                                    <Box sx={{ className: 'truncated-text' }}>{item.choice_content}</Box>
                                 </ButtonBase>
                             </ListItem>
                         ))}

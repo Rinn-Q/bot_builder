@@ -9,11 +9,11 @@
 
 .description_answer {
     font-size: medium;
-    max-height: 50vh;
+    max-height: 200px;
     overflow-y: scroll;
 }
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
     .description_answer {
         max-height: 30vh;
     }
@@ -23,7 +23,7 @@
     .description_answer {
         max-height: 20vh;
     }
-}
+} */
 
 /* ----------------- */
 

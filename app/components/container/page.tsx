@@ -76,7 +76,7 @@ export default function Container() {
         <div className="w-full h-full">
             <div className="rounded-xl box-shadow w-full h-1/2 mb-5 p-8 flex justify-between">
                 {firstChoice.map((item) => (
-                    <Choice key={item.id} width={400} info={item} height={350} />
+                    <Choice key={item.id} width={18} info={item} height={100} />
                 ))}
             </div>
             <div className="rounded-xl w-full h-2/5 flex justify-between">
@@ -93,7 +93,7 @@ export default function Container() {
                     }
                 </div>
             </div>
-            {/* <EditAnswer answer="sadf" choice="sadfgh"/> */}
+            <EditAnswer answer="sadf" choice="sadfgh"/>
         </div>
     )
 }

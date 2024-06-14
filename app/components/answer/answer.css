@@ -2,7 +2,7 @@
     background-color: #fff;
     padding: 1.5rem;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    height: fit-content;
+    /* height: fit-content; */
 }
 
 .circle_edge {
@@ -12,10 +12,10 @@
 .container-content {
     background-color: #F0FFF1;
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     /* margin: 2rem; */
     padding: 0 1.5rem 1.5rem 1.5rem;
-    height: fit-content;
+    /* height: fit-content; */
 }
 
 .editBtn {
@@ -39,6 +39,32 @@
     font-size: large;
 }
 
+input {
+    display: block;
+    padding: 0.5rem;
+    border: 1px solid black;
+}
+
 .description_answer {
     font-size: medium;
+}
+
+.container_editContentBtns {
+    z-index: 999;
+    position: relative;
+    left: 100%;
+    width: fit-content;
+    display: inline-block;
+}
+
+.horizontal_line {
+    background-color: #000;
+    height: 1px;
+}
+
+.editContentBtns {
+    display: inline-block;
+    background-color: #fff;
+    padding: 0.5rem;
+    width: 140px;
 }

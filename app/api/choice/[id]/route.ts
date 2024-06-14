@@ -5,13 +5,28 @@ export async function GET(request: Request, { params }: { params: { id: string }
     const id = Number(params.id);
 
     try {
-        const choice = await prisma.choice.findMany({
+        const choices = await prisma.choice.findMany({
             where: {
                 parent_id: id
             }
         });
 
-        return Response.json(choice);
+        const choicesWithChildren = await Promise.all(choices.map(async (parentChoice) => {
+            const childChoices = await prisma.choice.findMany({
+                where: {
+                    parent_id: parentChoice.id
+                }
+            });
+            return {
+                ...parentChoice,
+                children: childChoices
+            };
+        }));
+
+
+        return Response.json({
+            choicesWithChildren
+        });
 
     } catch (error: any) {
         return Response.json({

@@ -4,6 +4,8 @@ import Choice from "../choice/page"
 import Answer from "../answer/page"
 import './container.css'
 import EditAnswer from '../form/answer/EditAnswer'
+import AnswerSkelton from "../skelton/AnswerSkelton"
+import ChoiceSkelton from "../skelton/ChoiceSkelton"
 
 interface Choices {
     id: number,
@@ -88,7 +90,7 @@ export default function Container() {
                         answer ? (
                             <Answer width={100} caption="" description={answer.answer_content} height={100} />
                         ) : (
-                            <Answer width={100} caption="" description="Хариулт олдсонгүй" height={100} />
+                            <AnswerSkelton/>
                         )
                     }
                 </div>

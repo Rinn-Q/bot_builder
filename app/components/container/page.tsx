@@ -75,17 +75,17 @@ export default function Container() {
     }, [])
 
     return (
-        <div className="w-full h-full">
-            <div className="rounded-xl box-shadow w-full h-1/2 mb-5 p-8 flex justify-between">
+        <div className="w-full h-full bg-slate-100">
+            <div className="rounded-xl box-shadow w-full h-1/2 mb-5 p-8 flex justify-between bg-white">
                 {firstChoice.map((item) => (
                     <Choice key={item.id} width={18} info={item} height={100} />
                 ))}
             </div>
             <div className="rounded-xl w-full h-2/5 flex justify-between">
-                <div className="box-shadow w-2/5 p-8 mr-10 rounded-xl">
+                <div className="box-shadow w-2/5 p-8 mr-10 rounded-xl bg-white">
                     <Answer width={100} caption="heloo" description="hi" height={100} />
                 </div>
-                <div className="box-shadow w-3/5 p-8 rounded-xl">
+                <div className="box-shadow w-3/5 p-8 rounded-xl bg-white">
                     {
                         answer ? (
                             <Answer width={100} caption="" description={answer.answer_content} height={100} />
@@ -95,7 +95,7 @@ export default function Container() {
                     }
                 </div>
             </div>
-            <EditAnswer answer="sadf" choice="sadfgh"/>
+            {/* <EditAnswer answer="sadf" choice="sadfgh"/> */}
         </div>
     )
 }

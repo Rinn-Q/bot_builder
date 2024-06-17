@@ -91,7 +91,10 @@ export default function Answer({ id, choice_id, width, height, caption, descript
                 open={isEditAnswerOpen}
                 handleUpdate={handleUpdate}
             />
-            <DeleteAnswer deleteHandler={deleteHandler} />
+            <DeleteAnswer
+                deleteHandler={deleteHandler}
+                open={isDeleteAnswerOpen}
+                id={id} />
             <div className="container-content circle_edge" style={{ width: `${width}%`, height: `${height}%` }}>
                 <div className="container-holder">
                     <div className="upper_container">

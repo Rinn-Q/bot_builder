@@ -19,6 +19,9 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
     const { choice_content, parent_id } = await req.json();
 
+    console.log(choice_content)
+    console.log(parent_id)
+
     if (!choice_content || !parent_id) {
         return Response.json({ message: "Invalid request" })
     }
@@ -26,7 +29,7 @@ export async function POST(req: Request) {
         const choice = await prisma.choice.create({
             data: {
                 choice_content,
-                parent_id
+                parent_id: Number(parent_id)
             }
         });
 
@@ -42,8 +45,6 @@ export async function POST(req: Request) {
         return Response.json({
             status: 500,
             error: error.message
-        }), {
-            headers: { 'Content-Type': 'application/json' }
-        };
+        })
     }
 }

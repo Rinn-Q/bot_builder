@@ -3,8 +3,6 @@ import React, { useState, useEffect } from "react"
 import Choice from "../choice/page"
 import Answer from "../answer/page"
 import './container.css'
-import EditAnswer from '../form/answer/EditAnswer'
-import DeleteAnswer from '../form/answer/DeleteAnswer'
 import AnswerSkelton from "../skelton/AnswerSkelton"
 import ChoiceSkelton from "../skelton/ChoiceSkelton"
 
@@ -27,15 +25,12 @@ interface Answer {
 
 export default function Container() {
     const [firstChoice, setFirstChoice] = useState<Choices[]>([]);
-    const [lastChoice, setlastChoice] = useState<Choices[]>([]);
-    const [choice, setChoice] = useState<Choices[]>([]);
+    const [lastChoice, setlastChoice] = useState<Choices>();
     const [answer, setAnswer] = useState<Answer>();
-
-    // const [firstChoice, setChoicesWithChildren] = useState<Choice[]>([]);
 
     const fetchChoiceData = async () => {
         try {
-            const res = await fetch(`https://8560-66-181-164-203.ngrok-free.app/api/choice/7`, {
+            const res = await fetch(`https://8476-66-181-164-203.ngrok-free.app/api/choice/7`, {
                 headers: {
                     'ngrok-skip-browser-warning': 'true'
                 },
@@ -53,11 +48,10 @@ export default function Container() {
         }
     }
 
-    console.log(firstChoice)
 
     const fetchAnswerData = async (id: number) => {
         try {
-            const res = await fetch(`https://8560-66-181-164-203.ngrok-free.app/api/answer${id}`, {
+            const res = await fetch(`https://8476-66-181-164-203.ngrok-free.app/api/answer/${id}`, {
                 headers: {
                     'ngrok-skip-browser-warning': 'true'
                 },

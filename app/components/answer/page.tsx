@@ -15,13 +15,15 @@ import "./answer.css";
 import EditAnswer from "../form/answer/EditAnswer";
 
 type typeAnswer = {
+    id: number,
+    choice_id: number,
     height: number,
     width: number,
     caption: string,
-    description: string
+    description: string,
 };
 
-export default function Answer({ width, height, caption, description }: typeAnswer) {
+export default function Answer({ id, choice_id, width, height, caption, description }: typeAnswer) {
     // Динамик контентууд states
     const [currentCaption, setCurrentCaption] = useState(caption);
     const [currentDescription, setCurrentDescription] = useState(description);
@@ -54,7 +56,7 @@ export default function Answer({ width, height, caption, description }: typeAnsw
 
     return (
         <>
-            <EditAnswer choice={currentCaption} answer={currentDescription} handleUpdate={handleUpdate} />
+            <EditAnswer id={id} choice_id={choice_id} choice={currentCaption} answer={currentDescription} handleUpdate={handleUpdate} />
             <div className="container-content circle_edge" style={{ width: `${width}%`, height: `${height}%` }}>
                 <div className="container-holder">
                     <div className="upper_container">

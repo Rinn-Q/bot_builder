@@ -102,12 +102,25 @@ export default function Choice({ width, height, info }: ParameterType) {
                 anchorRef={anchorRef}
                 handleClose={handleClose}
                 buttonData={[
-                    { title: 'Нэмэх', icon: AddBox },
-                    { title: 'Засах', icon: Edit },
-                    { title: 'Устгах', icon: Delete },
-                ]} handlePopup={function (): void {
-                    throw new Error('Function not implemented.');
-                } }            />
+                    {
+                        title: 'Нэмэх', icon: AddBox,
+                        handlePopup: function (): void {
+                            throw new Error('Function not implemented.');
+                        }
+                    },
+                    {
+                        title: 'Засах', icon: Edit,
+                        handlePopup: function (): void {
+                            throw new Error('Function not implemented.');
+                        }
+                    },
+                    {
+                        title: 'Устгах', icon: Delete,
+                        handlePopup: function (): void {
+                            throw new Error('Function not implemented.');
+                        }
+                    },
+                ]}/>
         </Container>
     );
 }

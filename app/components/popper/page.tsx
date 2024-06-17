@@ -6,20 +6,16 @@ interface CustomPopperProps {
     open: boolean;
     anchorRef: React.RefObject<HTMLButtonElement>;
     handleClose: (event: Event | React.SyntheticEvent) => void;
-    handlePopup: () => void;
     buttonData: Button[]
 }
 
 interface Button {
     title : String;
     icon : OverridableComponent<SvgIconTypeMap<{}, "svg">>
+    handlePopup: () => void;
 }
 
-const CustomPopper: React.FC<CustomPopperProps> = ({ open, anchorRef, handleClose , buttonData,handlePopup}) => {
-    const handleMenuItemClick = (event: Event | React.SyntheticEvent) => {
-        handlePopup();
-        handleClose(event);
-    };
+const CustomPopper: React.FC<CustomPopperProps> = ({ open, anchorRef, handleClose , buttonData}) => {
     return (
         <Popper
             open={open}
@@ -38,13 +34,22 @@ const CustomPopper: React.FC<CustomPopperProps> = ({ open, anchorRef, handleClos
                     <Paper>
                         <ClickAwayListener onClickAway={handleClose}>
                             <MenuList autoFocusItem={open} id="composition-menu" aria-labelledby="composition-button">
-                                {buttonData.map((e)=>
-                                <MenuItem onClick={
-                                    handleMenuItemClick
-                                }>
-                                    <e.icon></e.icon>
-                                    {e.title}
-                                    </MenuItem>
+                                {buttonData.map((e)=>{
+                                    const handleMenuItemClick = (event: Event | React.SyntheticEvent) => {
+                                        e.handlePopup();
+                                        handleClose(event);
+                                    };
+                                    return (
+                                        <MenuItem onClick={
+                                            handleMenuItemClick
+                                        }>
+                                            <e.icon></e.icon>
+                                            {e.title}
+                                        </MenuItem>
+                                    )
+                                }
+                                
+                                
                                 )}
                             </MenuList>
                         </ClickAwayListener>

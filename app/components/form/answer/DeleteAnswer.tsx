@@ -71,7 +71,7 @@ export default function DeleteAnswer(props: DeleteAnswerProps) {
           <div className='flex justify-around'>
             <button
               type="button"
-              onClick={clickCancel}
+              onClick={props.onClose}
               className='px-4 py-1 rounded-md font-sans text-white'
               style={{ backgroundColor: '#FF5630' }}
             >

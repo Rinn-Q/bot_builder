@@ -12,6 +12,10 @@ export default function AddChoice(props: AddChoiceProps) {
   const [choice_content , setChoiceContent] = React.useState('')
 
   React.useEffect(() => {
+    setOpen(props.open);
+  }, [props.open]);
+
+  React.useEffect(() => {
     setChoiceContent(choice_content);
   }, [choice_content]);
 

@@ -12,6 +12,8 @@ export default function DeleteAnswer(props: DeleteAnswerProps) {
 
   React.useEffect(() => {
     setOpen(props.open);
+
+    console.log("state:", open);
   }, [props.open]);
 
 

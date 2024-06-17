@@ -95,7 +95,7 @@ export default function Container() {
                 {
                     firstChoice ? (
                         firstChoice.map((item) => (
-                            <Choice key={item.id} width={18} info={item} height={100} />
+                            <Choice key={item.id} width={18} info={item} height={100} onChoiceChange={} />
                         ))
                     ) : (
                         <ChoiceSkelton />

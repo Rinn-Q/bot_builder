@@ -4,36 +4,66 @@
 }
 
 .caption_answer {
-    font-size: large;
+    font-size: 1.5rem;
 }
 
 .description_answer {
-    font-size: medium;
-    max-height: 150px;
-    overflow-y: scroll;
+    font-size: 1rem;
+    /* max-height: 50%; */
+    overflow-y: auto;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    hyphens: auto;
 }
 
 @media (max-width: 768px) {
+    .caption_answer {
+        font-size: 1.2rem;
+    }
+
     .description_answer {
-        max-height: 90px;
+        font-size: 0.9rem;
+        max-height: 40%;
     }
 }
 
-/* ----------------- */
+@media (max-width: 480px) {
+    .caption_answer {
+        font-size: 1rem;
+    }
 
-.container-content {
-    background-color: #F0FFF1;
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
+    .description_answer {
+        font-size: 0.8rem;
+        max-height: 30%;
+    }
 }
+
 
 .upper_container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+}
+
+.container-content {
+    background-color: #F0FFF1;
+    padding: 2.5%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+}
+
+.container-holder {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
 }
 
 .underside_container {
-    height: 100%;
+    flex: 1;
+    overflow-y: auto;
 }

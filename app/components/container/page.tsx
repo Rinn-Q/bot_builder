@@ -48,6 +48,26 @@ export default function Container() {
         }
     }
 
+    const fetchLastChoice = async (id: number) => {
+        try {
+            const res = await fetch(`https://8476-66-181-164-203.ngrok-free.app/api/answer/${id}`, {
+                headers: {
+                    'ngrok-skip-browser-warning': 'true'
+                },
+                method: "GET",
+            })
+
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+
+            const data: { choicesWithChildren: Choices } = await res.json();
+            setlastChoice(data.choicesWithChildren);
+        } catch (error) {
+            console.log(`Error fetching choice data: ${error}`);
+        }
+    }
+
 
     const fetchAnswerData = async (id: number) => {
         try {
@@ -72,9 +92,20 @@ export default function Container() {
     return (
         <div className="w-full h-full bg-slate-100">
             <div className="rounded-xl box-shadow w-full h-1/2 mb-5 p-8 flex justify-between bg-white">
-                {firstChoice.map((item) => (
-                    <Choice key={item.id} width={18} info={item} height={100} />
-                ))}
+                {
+                    firstChoice ? (
+                        firstChoice.map((item) => (
+                            <Choice key={item.id} width={18} info={item} height={100} />
+                        ))
+                    ) : (
+                        <ChoiceSkelton/>
+                        // <div>
+                        //   {Array(5).map((_, index) => (
+                        //     <ChoiceSkelton key={index} />
+                        //   ))}
+                        // </div>
+                    )
+                }
             </div>
             <div className="rounded-xl w-full h-2/5 flex justify-between">
                 <div className="box-shadow w-2/5 p-8 mr-10 rounded-xl bg-white">
@@ -90,8 +121,6 @@ export default function Container() {
                     }
                 </div>
             </div>
-            {/* <EditAnswer answer="sadf" choice="sadfgh"/> */}
-            {/* <DeleteAnswer id="sadafgbfdcsafhjngfbvcxzcdfghdsafhjgfdsadfgjklijkhgfdsadfhklkjgghfbvds"/> */}
         </div>
     )
 }

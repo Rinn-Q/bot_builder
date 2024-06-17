@@ -1,6 +1,10 @@
 import * as React from 'react';
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
 import Dialog from '@mui/material/Dialog';
 interface EditAnswerProps {
+  id: number,
+  choice_id: number,
   choice: string,
   answer: string,
   handleUpdate: Function
@@ -28,8 +32,39 @@ export default function EditAnswer(props: EditAnswerProps) {
 
   const clickSave = () => {
     //-----uildel logicuud -----
+    updateDB();
     props.handleUpdate(answerValue , choiceValue);
-    setOpen(false)
+    setOpen(false);
+  }
+
+  const updateDB = async () => {
+    //-----uildel logicuud -----
+    try {
+      const updatedAnswerContent = await fetch(`https://8476-66-181-164-203.ngrok-free.app/api/answer/${props.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'ngrok-skip-browser-warning': 'true'
+        },
+        body: JSON.stringify({
+          answer_content: answerValue,
+        })
+      })
+  
+      const updatedChoiceContent = await fetch(`https://8476-66-181-164-203.ngrok-free.app/api/choice/${props.choice_id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'ngrok-skip-browser-warning': 'true'
+        },
+        body: JSON.stringify({
+          choice_content: choiceValue,
+        })
+      })
+      console.log("Answer content :::::"+updatedChoiceContent + "\n" + "Choice content :::::" + updatedAnswerContent)
+    } catch(error) {
+      console.error(error);
+    }
   }
   return (
     <div>

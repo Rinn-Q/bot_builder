@@ -4,11 +4,12 @@ interface DeleteChoiceProps {
   id: number,
   open: boolean,
   deleteHandler: Function,
+  onClose: () => void;
 }
 
 export default function DeleteChoice(props: DeleteChoiceProps) {
   const [open, setOpen] = React.useState(props.open);
-  
+
   React.useEffect(() => {
     setOpen(props.open);
   }, [props.open]);
@@ -31,7 +32,7 @@ export default function DeleteChoice(props: DeleteChoiceProps) {
     //-----uildel logicuud -----
     deleteDB();
     props.deleteHandler();
-    setOpen(false)
+    props.onClose();
   }
 
   const deleteDB = async() => {
@@ -67,7 +68,7 @@ export default function DeleteChoice(props: DeleteChoiceProps) {
           <div className='flex justify-around'>
             <button
               type="button"
-              onClick={clickCancel}
+              onClick={props.onClose}
               className='px-4 py-1 rounded-md font-sans text-white'
               style={{ backgroundColor: '#FF5630' }}
             >

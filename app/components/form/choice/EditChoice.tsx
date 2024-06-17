@@ -4,12 +4,17 @@ interface EditChoiceProps {
   open: boolean,
   id: number,
   choice_content: string,
-  handleUpdate: Function
+  handleUpdate: Function,
+  onClose: () => void
 }
 
 export default function EditChoice(props: EditChoiceProps) {
   const [open, setOpen] = React.useState(props.open);
   const [choice_content, setChoiceContent] = React.useState(props.choice_content)
+
+  React.useEffect(() => {
+    setOpen(props.open);
+  }, [props.open]);
 
   React.useEffect(() => {
     setChoiceContent(choice_content);
@@ -34,7 +39,7 @@ export default function EditChoice(props: EditChoiceProps) {
     //-----uildel logicuud -----
     editBD();
     props.handleUpdate(choice_content);
-    setOpen(false)
+    props.onClose();
   }
 
   const editBD = async() => {
@@ -76,7 +81,7 @@ export default function EditChoice(props: EditChoiceProps) {
           <div className='flex justify-around'>
             <button
               type="button"
-              onClick={clickCancel}
+              onClick={props.onClose}
               className='px-4 py-1 rounded-md font-sans text-white'
               style={{ backgroundColor: '#FF5630' }}
             >

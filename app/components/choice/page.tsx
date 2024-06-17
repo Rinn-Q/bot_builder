@@ -4,6 +4,9 @@ import { Container, Typography, ListItem, List, Box, IconButton, ButtonBase } fr
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CustomPopper from '../popper/page';
 import { AddBox, Edit, Delete } from '@mui/icons-material';
+import DeleteChoice from '../form/choice/DeleteChoice';
+import EditChoice from '../form/choice/EditChoice';
+import AddChoice from '../form/choice/AddChoice';
 
 interface ChoiceModel {
     id: number;
@@ -26,6 +29,37 @@ export default function Choice({ width, height, info }: ParameterType) {
     const [open, setOpen] = React.useState(false);
     const [data, setData] = React.useState<ChoiceModel>();
 
+    const [content, setChoiceContent] = React.useState(info.choice_content);
+
+    const [isEditOpen, setIsEditOpen] = React.useState(false);
+    const [isDeleteOpen, setIsDeleteOpen] = React.useState(false);
+    const [isAddOpen, setIsAddOpen] = React.useState(false);
+
+    const handleEditOpen = () => {
+        setIsEditOpen(true);
+    }
+    const handleEditClose = () => {
+        setIsEditOpen(false);
+    }
+    const handleDeleteOpen = () => {
+        setIsDeleteOpen(true);
+    }
+    const handleDeleteClose = () => {
+        setIsDeleteOpen(false);
+    }
+    const handleAddOpen = () => {
+        setIsAddOpen(true);
+    }
+    const handleAddClose = () => {
+        setIsAddOpen(false);
+    }
+    const deleteHandler = () => {
+    }
+    const addHandler = () => {
+    }
+    const editHandler = (content: string) => {
+        setChoiceContent(content);
+    }
     React.useEffect(() => {
         setData(info);
     }, [info]);
@@ -91,8 +125,8 @@ export default function Choice({ width, height, info }: ParameterType) {
                             maxHeight: "100%",
                         }}
                     >
-                        {data?.children.map((item, index) => (
-                            <ListItem key={index} sx={{ padding: 0 }}>
+                        {data?.children.map((item, index) => {
+                            return <ListItem key={index} sx={{ padding: 0 }}>
                                 <ButtonBase
                                     onClick={() => {}}
                                     sx={{
@@ -108,15 +142,33 @@ export default function Choice({ width, height, info }: ParameterType) {
                                         overflow: 'hidden',
                                     }}
                                 >
-                                    <Box sx={{ overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>
-                                        {item.choice_content}
+                                    <Box sx={{ overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>{item.choice_content}
                                     </Box>
                                 </ButtonBase>
                             </ListItem>
-                        ))}
+                        }
+                        )}
                     </List>
                 </Box>
             </Box>
+            <EditChoice
+                id={info.id}
+                open={isEditOpen}
+                handleUpdate={editHandler}
+                onClose={handleEditClose} 
+                choice_content={content}/>
+            <DeleteChoice
+                deleteHandler={deleteHandler}
+                onClose={handleDeleteClose}
+                open={isDeleteOpen}
+                id={info.id}
+            />
+            <AddChoice
+                onClose={handleAddClose}
+                open={isAddOpen} 
+                parent_id={info.id} 
+                addChoiceHandler={addHandler}
+            />
             <CustomPopper
                 open={open}
                 anchorRef={anchorRef}
@@ -124,21 +176,15 @@ export default function Choice({ width, height, info }: ParameterType) {
                 buttonData={[
                     {
                         title: 'Нэмэх', icon: AddBox,
-                        handlePopup: function (): void {
-                            throw new Error('Function not implemented.');
-                        }
+                        handlePopup: handleAddOpen
                     },
                     {
                         title: 'Засах', icon: Edit,
-                        handlePopup: function (): void {
-                            throw new Error('Function not implemented.');
-                        }
+                        handlePopup: handleEditOpen
                     },
                     {
                         title: 'Устгах', icon: Delete,
-                        handlePopup: function (): void {
-                            throw new Error('Function not implemented.');
-                        }
+                        handlePopup: handleDeleteOpen
                     },
                 ]}/>
         </Container>

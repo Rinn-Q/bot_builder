@@ -98,7 +98,7 @@ export default function Container() {
                             <Choice key={item.id} width={18} info={item} height={100} />
                         ))
                     ) : (
-                        <ChoiceSkelton/>
+                        <ChoiceSkelton />
                         // <div>
                         //   {Array(5).map((_, index) => (
                         //     <ChoiceSkelton key={index} />

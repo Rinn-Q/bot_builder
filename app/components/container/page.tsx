@@ -4,6 +4,8 @@ import Choice from "../choice/page"
 import Answer from "../answer/page"
 import './container.css'
 import EditAnswer from '../form/answer/EditAnswer'
+import AnswerSkelton from "../skelton/AnswerSkelton"
+import ChoiceSkelton from "../skelton/ChoiceSkelton"
 
 interface Choices {
     id: number,
@@ -32,7 +34,7 @@ export default function Container() {
 
     const fetchChoiceData = async () => {
         try {
-            const res = await fetch(`https://5eb1-66-181-164-203.ngrok-free.app/api/choice/7`, {
+            const res = await fetch(`https://8560-66-181-164-203.ngrok-free.app/api/choice/7`, {
                 headers: {
                     'ngrok-skip-browser-warning': 'true'
                 },
@@ -54,7 +56,7 @@ export default function Container() {
 
     const fetchAnswerData = async (id: number) => {
         try {
-            const res = await fetch(`https://176b-66-181-164-203.ngrok-free.app/api/answer${id}`, {
+            const res = await fetch(`https://8560-66-181-164-203.ngrok-free.app/api/answer${id}`, {
                 headers: {
                     'ngrok-skip-browser-warning': 'true'
                 },
@@ -69,26 +71,26 @@ export default function Container() {
 
     useEffect(() => {
         fetchChoiceData();
-        fetchAnswerData(16);
+        fetchAnswerData(61);
     }, [])
 
     return (
-        <div className="w-full h-full">
-            <div className="rounded-xl box-shadow w-full h-1/2 mb-5 p-8 flex justify-between">
+        <div className="w-full h-full bg-slate-100">
+            <div className="rounded-xl box-shadow w-full h-1/2 mb-5 p-8 flex justify-between bg-white">
                 {firstChoice.map((item) => (
-                    <Choice key={item.id} width={400} info={item} height={350} />
+                    <Choice key={item.id} width={18} info={item} height={100} />
                 ))}
             </div>
             <div className="rounded-xl w-full h-2/5 flex justify-between">
-                <div className="box-shadow w-2/5 p-8 mr-10 rounded-xl">
+                <div className="box-shadow w-2/5 p-8 mr-10 rounded-xl bg-white">
                     <Answer width={100} caption="heloo" description="hi" height={100} />
                 </div>
-                <div className="box-shadow w-3/5 p-8 rounded-xl">
+                <div className="box-shadow w-3/5 p-8 rounded-xl bg-white">
                     {
                         answer ? (
                             <Answer width={100} caption="" description={answer.answer_content} height={100} />
                         ) : (
-                            <Answer width={100} caption="" description="Хариулт олдсонгүй" height={100} />
+                            <AnswerSkelton/>
                         )
                     }
                 </div>

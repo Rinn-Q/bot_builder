@@ -1,14 +1,12 @@
 import * as React from 'react';
 import Dialog from '@mui/material/Dialog';
-interface EditAnswerProps {
-    choice: string,
-    answer: string
+interface DeleteAnswerProps {
+    deleteHandler: Function,
 }
 
-export default function EditAnswer(props: EditAnswerProps) {
+export default function DeleteAnswer(props: DeleteAnswerProps) {
   const [open, setOpen] = React.useState(false);
-  const [answerValue , setAnswerValue] = React.useState(props.answer)
-  const [choiceValue , setChoiceValue] = React.useState(props.choice)
+  // const [id , setAnswerId] = React.useState(props.id)
 
 // -----------------------------------------------DIALOG handlers----------------------------------------------------------
   const handleClickOpen = () => {
@@ -24,8 +22,9 @@ export default function EditAnswer(props: EditAnswerProps) {
         setOpen(false)
     }
 
-    const clickSave= () => {
+    const clickDelete= () => {
         //-----uildel logicuud -----
+        props.deleteHandler();
         setOpen(false)
     }
   return (
@@ -38,20 +37,12 @@ export default function EditAnswer(props: EditAnswerProps) {
           button
         </button>
         <Dialog open={open} onClose={handleClose}>
-            <div className='w-96 h-64 p-6'>
-                <p className='font-mono'>Сонголт</p>
-                <input
-                    type="text"
-                    value={choiceValue}
-                    onChange={(e) => setChoiceValue(e.target.value)}
-                    className={`p-2 mb-3 rounded-xl border-slate-300 font-mono font-semibold w-full ${choiceValue ? 'border-green-400' : ''}`}
-                />
-                <p className='font-mono'>Хариулт</p>
-                <textarea 
-                    value={answerValue} 
-                    onChange={(e) => setAnswerValue(e.target.value)}
-                    className={`p-2 mb-3 rounded-xl border border-slate-300 font-sans w-full ${choiceValue ? 'border-green-400' : ''}`}
-                />
+            <div className='w-96 h-auto p-6'>
+                <div className='mb-4'>
+                  {
+                    `Та итгэлтэй байна уу?`
+                  }
+                </div>
                 <div className='flex justify-around'>
                     <button 
                         type="button" 
@@ -63,11 +54,11 @@ export default function EditAnswer(props: EditAnswerProps) {
                     </button>
                     <button 
                         type="button" 
-                        onClick={clickSave}
+                        onClick={clickDelete}
                         className='px-4 py-1 rounded-md font-sans text-white'
                         style={{backgroundColor: '#22C55E'}}
                     >
-                      өөрчлөх
+                      устгах
                     </button>
                 </div>
             </div>

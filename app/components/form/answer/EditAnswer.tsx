@@ -2,7 +2,8 @@ import * as React from 'react';
 import Dialog from '@mui/material/Dialog';
 interface EditAnswerProps {
   choice: string,
-  answer: string
+  answer: string,
+  handleUpdate: Function
 }
 
 export default function EditAnswer(props: EditAnswerProps) {
@@ -27,6 +28,7 @@ export default function EditAnswer(props: EditAnswerProps) {
 
   const clickSave = () => {
     //-----uildel logicuud -----
+    props.handleUpdate();
     setOpen(false)
   }
   return (

@@ -113,7 +113,7 @@ export default function Container() {
                 </div>
                 <div className="box-shadow w-3/5 p-8 rounded-xl bg-white">
                     {
-                        answer ? (
+                        answer !== undefined ? (
                             <Answer width={100} caption="" description={answer.answer_content} height={100} id={0} choice_id={0} />
                         ) : (
                             <AnswerSkelton />

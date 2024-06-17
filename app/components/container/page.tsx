@@ -100,11 +100,7 @@ export default function Container() {
                 {
                     firstChoice ? (
                         firstChoice.map((item) => (
-<<<<<<< Updated upstream
-                            <Choice key={item.id} width={18} info={item} height={100} onChoiceChange={} />
-=======
-                            <Choice key={item.id} width={18} onIdChange={handleIdChange} info={item} height={100} />
->>>>>>> Stashed changes
+                            <Choice key={item.id} width={18} onChoiceChange={handleIdChange} info={item} height={100} />
                         ))
                     ) : (
                         <ChoiceSkelton/>
@@ -118,7 +114,7 @@ export default function Container() {
             </div>
             <div className="rounded-xl w-full h-2/5 flex justify-between">
                 <div className="box-shadow w-2/5 p-8 mr-10 rounded-xl bg-white">
-                    <Choice width={18} info={firstChoice[0]}  height={100} />
+                    {/* <Choice width={18} info={firstChoice[0]}  height={100} /> */}
                 </div>
                 <div className="box-shadow w-3/5 p-8 rounded-xl bg-white">
                     {

@@ -9,6 +9,10 @@ interface DeleteAnswerProps {
 export default function DeleteAnswer(props: DeleteAnswerProps) {
   const [open, setOpen] = React.useState(props.open);
 
+  React.useEffect(() => {
+    setOpen(props.open);
+  }, [props.open]);
+
   // -----------------------------------------------DIALOG handlers----------------------------------------------------------
   const handleClickOpen = () => {
     setOpen(true);
@@ -30,7 +34,7 @@ export default function DeleteAnswer(props: DeleteAnswerProps) {
     setOpen(false)
   }
 
-  const deleteDB = async() => {
+  const deleteDB = async () => {
     //-----uildel logicuud -----
     try {
       const deletedData = fetch(`https://8476-66-181-164-203.ngrok-free.app/api/answer/${props.id}`, {
@@ -40,7 +44,7 @@ export default function DeleteAnswer(props: DeleteAnswerProps) {
         }
       })
       console.log("deleted data ::::::" + deletedData)
-    } catch(error) {
+    } catch (error) {
       console.log(error)
     }
   }

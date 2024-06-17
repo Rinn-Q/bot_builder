@@ -10,12 +10,12 @@ interface CustomPopperProps {
 }
 
 interface Button {
-    title : String;
-    icon : OverridableComponent<SvgIconTypeMap<{}, "svg">>
+    title: String;
+    icon: OverridableComponent<SvgIconTypeMap<{}, "svg">>
     handlePopup: () => void;
 }
 
-const CustomPopper: React.FC<CustomPopperProps> = ({ open, anchorRef, handleClose , buttonData}) => {
+const CustomPopper: React.FC<CustomPopperProps> = ({ open, anchorRef, handleClose, buttonData }) => {
     return (
         <Popper
             open={open}
@@ -34,13 +34,13 @@ const CustomPopper: React.FC<CustomPopperProps> = ({ open, anchorRef, handleClos
                     <Paper>
                         <ClickAwayListener onClickAway={handleClose}>
                             <MenuList autoFocusItem={open} id="composition-menu" aria-labelledby="composition-button">
-                                {buttonData.map((e)=>{
+                                {buttonData.map((e, index) => {
                                     const handleMenuItemClick = (event: Event | React.SyntheticEvent) => {
                                         e.handlePopup();
                                         handleClose(event);
                                     };
                                     return (
-                                        <MenuItem onClick={
+                                        <MenuItem key={index} onClick={
                                             handleMenuItemClick
                                         }>
                                             <e.icon></e.icon>
@@ -48,8 +48,8 @@ const CustomPopper: React.FC<CustomPopperProps> = ({ open, anchorRef, handleClos
                                         </MenuItem>
                                     )
                                 }
-                                
-                                
+
+
                                 )}
                             </MenuList>
                         </ClickAwayListener>

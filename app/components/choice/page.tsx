@@ -1,34 +1,34 @@
-'use client'
+'use client';
 import * as React from 'react';
 import { Container, Typography, ListItem, List, Box, IconButton, ButtonBase } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CustomPopper from '../popper/page';
-import {AddBox,Edit,Delete } from '@mui/icons-material';
+import { AddBox, Edit, Delete } from '@mui/icons-material';
 
 interface ChoiceModel {
-    id: number,
-    choice_content: string,
-    parent_id: number,
+    id: number;
+    choice_content: string;
+    parent_id: number;
     children: Array<{
-        id: number,
-        choice_content: string,
-        parent_id: number
-    }>
+        id: number;
+        choice_content: string;
+        parent_id: number;
+    }>;
 }
 
-type parameterType = {
-    height: number,
-    width: number,
-    info : ChoiceModel
-}
+type ParameterType = {
+    height: number;
+    width: number;
+    info: ChoiceModel;
+};
 
-export default function Choice({ width, height , info}: parameterType) {
+export default function Choice({ width, height, info }: ParameterType) {
     const [open, setOpen] = React.useState(false);
-    const [ data , setData ] = React.useState<ChoiceModel>();
+    const [data, setData] = React.useState<ChoiceModel>();
 
     React.useEffect(() => {
         setData(info);
-    }, []);
+    }, [info]);
 
     const anchorRef = React.useRef<HTMLButtonElement>(null);
 
@@ -52,47 +52,62 @@ export default function Choice({ width, height , info}: parameterType) {
     }, [open]);
 
     return (
-            <Container maxWidth="sm" sx={{
-                width: `${width}%`,
-                height: `${height}%`,
-                borderRadius: 4,
-                bgcolor: '#F0FFF1',
-                position: 'relative',
-                padding: "4px"
-            }}>
-                <Box>
-                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                <Typography variant="h6" gutterBottom sx={{ flexGrow: 1, margin: '10 auto' }}>
-                {data?.choice_content}
-                </Typography>
+        <Container maxWidth="sm" sx={{
+            width: `${width}%`,
+            height: `${height}%`,
+            borderRadius: 4,
+            bgcolor: '#F0FFF1',
+            position: 'relative',
+            padding: '4px',
+        }}>
+            <Box sx={{ padding: 2, maxHeight: '100vh', overflow: 'hidden' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 ,overflow: 'hidden'}}>
+                    <Typography variant="h6" gutterBottom sx={{ flexGrow: 1, textAlign: 'center', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>
+                        hellooooooooooooooooooooooooooooooooooooooooooo
+                    </Typography>
                     <IconButton ref={anchorRef} sx={{ ml: 1 }} onClick={handleToggle}>
                         <MoreVertIcon />
                     </IconButton>
                 </Box>
-                <Box sx={{ width: '100%' ,height: '100%', overflowY: 'scroll', '&::-webkit-scrollbar': { display: 'none' } }}>
-                    <List>
+                <Box sx={{ width: '100%', height: 'calc(100vh - 100px)', overflowY: 'scroll', '&::-webkit-scrollbar': { display: 'none' } }}>
+                    <List sx={{ padding: 0 }}>
                         {data?.children.map((item, index) => (
-                            <ListItem key={index}>
+                            <ListItem key={index} sx={{ padding: 0 }}>
                                 <ButtonBase
-                                    onClick={() => console.log(`Hii ${item}`)}
+                                    onClick={() => {}}
                                     sx={{
-                                        borderRadius: 10,
+                                        borderRadius: 2,
                                         bgcolor: '#FFFFFF',
-                                         width: '100%',
-                                        height: '15%',
+                                        width: '100%',
+                                        height: 50,
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'flex-start',
                                         padding: '0 16px',
-                                    }}>
-                                    <Box sx={{ className: 'truncated-text' }}>{item.choice_content}</Box>
+                                        my: 1,
+                                        overflow: 'hidden',
+                                    }}
+                                >
+                                    <Box sx={{ overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>
+                                        {item.choice_content}
+                                    </Box>
                                 </ButtonBase>
                             </ListItem>
                         ))}
                     </List>
                 </Box>
-                </Box>
-                <CustomPopper open={open} anchorRef={anchorRef} handleClose={handleClose} buttonData={[{title:"Нэмэх",icon: AddBox},{title:"Засах",icon: Edit},{title:"Устгах",icon: Delete},]} />
-            </Container>
-    )
+            </Box>
+            <CustomPopper
+                open={open}
+                anchorRef={anchorRef}
+                handleClose={handleClose}
+                buttonData={[
+                    { title: 'Нэмэх', icon: AddBox },
+                    { title: 'Засах', icon: Edit },
+                    { title: 'Устгах', icon: Delete },
+                ]} handlePopup={function (): void {
+                    throw new Error('Function not implemented.');
+                } }            />
+        </Container>
+    );
 }

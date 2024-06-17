@@ -6,6 +6,7 @@ interface CustomPopperProps {
     open: boolean;
     anchorRef: React.RefObject<HTMLButtonElement>;
     handleClose: (event: Event | React.SyntheticEvent) => void;
+    handlePopup: () => void;
     buttonData: Button[]
 }
 
@@ -14,7 +15,11 @@ interface Button {
     icon : OverridableComponent<SvgIconTypeMap<{}, "svg">>
 }
 
-const CustomPopper: React.FC<CustomPopperProps> = ({ open, anchorRef, handleClose , buttonData}) => {
+const CustomPopper: React.FC<CustomPopperProps> = ({ open, anchorRef, handleClose , buttonData,handlePopup}) => {
+    const handleMenuItemClick = (event: Event | React.SyntheticEvent) => {
+        handlePopup();
+        handleClose(event);
+    };
     return (
         <Popper
             open={open}
@@ -34,7 +39,9 @@ const CustomPopper: React.FC<CustomPopperProps> = ({ open, anchorRef, handleClos
                         <ClickAwayListener onClickAway={handleClose}>
                             <MenuList autoFocusItem={open} id="composition-menu" aria-labelledby="composition-button">
                                 {buttonData.map((e)=>
-                                <MenuItem onClick={handleClose}>
+                                <MenuItem onClick={
+                                    handleMenuItemClick
+                                }>
                                     <e.icon></e.icon>
                                     {e.title}
                                     </MenuItem>

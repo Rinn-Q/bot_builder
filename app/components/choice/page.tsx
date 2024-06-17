@@ -23,9 +23,10 @@ type ParameterType = {
     height: number;
     width: number;
     info: ChoiceModel;
+    onChoiceChange: Function;
 };
 
-export default function Choice({ width, height, info }: ParameterType) {
+export default function Choice({ width, height, info,onChoiceChange }: ParameterType) {
     const [open, setOpen] = React.useState(false);
     const [data, setData] = React.useState<ChoiceModel>();
 
@@ -136,7 +137,9 @@ export default function Choice({ width, height, info }: ParameterType) {
                         {data?.children.map((item, index) => (
                             <ListItem key={index} sx={{ padding: 0 }}>
                                 <ButtonBase
-                                    onClick={() => {}}
+                                    onClick={() => {
+                                        onChoiceChange(item.id);
+                                    }}
                                     sx={{
                                         borderRadius: 2,
                                         bgcolor: '#FFFFFF',

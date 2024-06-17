@@ -56,6 +56,7 @@ export default function AddChoice(props: AddChoiceProps) {
         })
       })
       console.log("added data ::::::" + addedData)
+      console.log(addedData.text);
       return {
         parent_id: props.parent_id,
         choice_content: choice_content

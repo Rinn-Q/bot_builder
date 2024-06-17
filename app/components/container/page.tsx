@@ -4,6 +4,7 @@ import Choice from "../choice/page"
 import Answer from "../answer/page"
 import './container.css'
 import EditAnswer from '../form/answer/EditAnswer'
+import DeleteAnswer from '../form/answer/DeleteAnswer'
 import AnswerSkelton from "../skelton/AnswerSkelton"
 import ChoiceSkelton from "../skelton/ChoiceSkelton"
 
@@ -96,6 +97,7 @@ export default function Container() {
                 </div>
             </div>
             {/* <EditAnswer answer="sadf" choice="sadfgh"/> */}
+            {/* <DeleteAnswer id="sadafgbfdcsafhjngfbvcxzcdfghdsafhjgfdsadfgjklijkhgfdsadfhklkjgghfbvds"/> */}
         </div>
     )
 }

@@ -28,7 +28,7 @@ export default function EditAnswer(props: EditAnswerProps) {
 
   const clickSave = () => {
     //-----uildel logicuud -----
-    props.handleUpdate();
+    props.handleUpdate(answerValue , choiceValue);
     setOpen(false)
   }
   return (

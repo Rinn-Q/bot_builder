@@ -6,14 +6,13 @@ interface DeleteAnswerProps {
 
 export default function DeleteAnswer(props: DeleteAnswerProps) {
   const [open, setOpen] = React.useState(false);
-  // const [id , setAnswerId] = React.useState(props.id)
 
 // -----------------------------------------------DIALOG handlers----------------------------------------------------------
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-  const handleClose = (value: string) => {
+  const handleClose = () => {
     setOpen(false);
   };
 

@@ -46,13 +46,13 @@ export default function DeleteAnswer(props: DeleteAnswerProps) {
   }
   return (
     <div>
-      <button
+      {/* <button
         type="button"
         onClick={handleClickOpen}
         className='border border-gray-500  px-4 py-1 rounded-md'
       >
         button
-      </button>
+      </button> */}
       <Dialog open={open} onClose={handleClose}>
         <div className='w-96 h-auto p-6'>
           <div className='mb-4'>

@@ -33,17 +33,19 @@ export default function AddChoice(props: AddChoiceProps) {
     setOpen(false)
   }
 
-  const clickAdd = () => {
+  const clickAdd = async () => {
     //-----uildel logicuud -----
-    addDB();
-    props.addChoiceHandler();
+    const data = await addDB();
+    props.addChoiceHandler(
+      data
+    );
     props.onClose();
   }
 
   const addDB = async() => {
     //-----uildel logicuud -----
     try {
-      const addedData = fetch(`https://8476-66-181-164-203.ngrok-free.app/api/choice`, {
+      const addedData = await fetch(`https://8476-66-181-164-203.ngrok-free.app/api/choice`, {
         method: 'POST',
         headers: {
           'ngrok-skip-browser-warning': 'true'
@@ -54,6 +56,10 @@ export default function AddChoice(props: AddChoiceProps) {
         })
       })
       console.log("added data ::::::" + addedData)
+      return {
+        parent_id: props.parent_id,
+        choice_content: choice_content
+      };
     } catch(error) {
       console.log(error)
     }

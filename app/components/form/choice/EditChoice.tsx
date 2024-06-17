@@ -1,74 +1,66 @@
 import * as React from 'react';
 import Dialog from '@mui/material/Dialog';
+
 interface EditChoiceProps {
   open: boolean,
   id: number,
   choice_content: string,
-  handleUpdate: Function,
+  handleUpdate: (content: string) => void,
   onClose: () => void
 }
 
 export default function EditChoice(props: EditChoiceProps) {
   const [open, setOpen] = React.useState(props.open);
-  const [choice_content, setChoiceContent] = React.useState(props.choice_content)
+  const [choice_content, setChoiceContent] = React.useState(props.choice_content);
 
   React.useEffect(() => {
     setOpen(props.open);
   }, [props.open]);
 
   React.useEffect(() => {
-    setChoiceContent(choice_content);
-  }, [choice_content]);
-
-  // -----------------------------------------------DIALOG handlers----------------------------------------------------------
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (value: string) => {
+    setChoiceContent(props.choice_content);
+  }, [props.choice_content]);
+  // -----------------------------------DIALOG handlers---------------------------------------------------
+  const handleClose = () => {
     setOpen(false);
+    props.onClose();
   };
-
-  // -----------------------------------------------BUTTON handlers----------------------------------------------------------
+  // -------------------------------------BUTTON handlers-----------------------------------------------------
   const clickCancel = () => {
-
-    setOpen(false)
+    setOpen(false);
+    props.onClose();
   }
 
   const clickSave = () => {
-    //-----uildel logicuud -----
-    editBD();
+    editDB();
     props.handleUpdate(choice_content);
     props.onClose();
   }
 
-  const editBD = async() => {
+  const editDB = async () => {
     try {
-        const updatedChoiceContent = await fetch(`https://8476-66-181-164-203.ngrok-free.app/api/choice/${props.id}`, {
-            method: 'PATCH',
-            headers: {
-              'Content-Type': 'application/json',
-              'ngrok-skip-browser-warning': 'true'
-            },
-            body: JSON.stringify({
-              choice_content: choice_content,
-            })
-          })
-
-          console.log("Updated choice content:::::" + updatedChoiceContent);
-    } catch(error) {
-        console.log(error)
+      const response = await fetch(`https://8476-66-181-164-203.ngrok-free.app/api/choice/${props.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'ngrok-skip-browser-warning': 'true'
+        },
+        body: JSON.stringify({
+          new_choice_content: choice_content,
+        })
+      });
+      if (response.ok) {
+        console.log("Updated choice content:", choice_content);
+      } else {
+        console.error("Failed to update choice content");
+      }
+    } catch (error) {
+      console.error("Error updating choice content:", error);
     }
   }
+
   return (
     <div>
-      {/* <button
-        type="button"
-        onClick={handleClickOpen}
-        className='border border-gray-500  px-4 py-1 rounded-md'
-      >
-        button
-      </button> */}
       <Dialog open={open} onClose={handleClose}>
         <div className='w-96 h-auto p-6'>
           <p className='font-mono'>өөрчлөх утгаа оруулна уу</p>
@@ -81,7 +73,7 @@ export default function EditChoice(props: EditChoiceProps) {
           <div className='flex justify-around'>
             <button
               type="button"
-              onClick={props.onClose}
+              onClick={clickCancel}
               className='px-4 py-1 rounded-md font-sans text-white'
               style={{ backgroundColor: '#FF5630' }}
             >

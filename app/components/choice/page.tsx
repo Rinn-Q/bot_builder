@@ -55,10 +55,19 @@ export default function Choice({ width, height, info }: ParameterType) {
     }
     const deleteHandler = () => {
     }
-    const addHandler = () => {
+    const addHandler = (added: any) => {
+        const choice={
+            id : 1234,
+            choice_content : added.choice_content,
+            parent_id : added.parent_id
+        }
+        console.log(`~~~~~~~~~~~~~${added.choice_content}`);
+        info.children.push(choice);
+        setData(info);
     }
     const editHandler = (content: string) => {
         setChoiceContent(content);
+        info.choice_content=content;
     }
     React.useEffect(() => {
         setData(info);
@@ -94,7 +103,7 @@ export default function Choice({ width, height, info }: ParameterType) {
             position: 'relative',
             padding: '4px',
         }}>
-            <Box sx={{ padding: 2, maxHeight: '100%', overflow: 'hidden' }}>
+        <Box sx={{ padding: 2, maxHeight: '100%', overflow: 'auto','&::-webkit-scrollbar': { display: 'none' }, }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                     <Typography
                         variant="h6"
@@ -110,9 +119,8 @@ export default function Choice({ width, height, info }: ParameterType) {
                 <Box
                     sx={{
                         width: '100%',
-                        height: 'calc(100vh - 100px)',
+                        maxHeight: 'calc(100vh - 200px)', 
                         overflowY: 'auto',
-                        '&::-webkit-scrollbar': { display: 'none' },
                     }}
                 >
                     <List
@@ -121,12 +129,12 @@ export default function Choice({ width, height, info }: ParameterType) {
                             width: '100%',
                             maxWidth: "100%",
                             position: 'relative',
-                            overflow: 'auto',
-                            maxHeight: "100%",
+                            overflowY: 'auto',
+                            maxHeight: '100%',
                         }}
                     >
-                        {data?.children.map((item, index) => {
-                            return <ListItem key={index} sx={{ padding: 0 }}>
+                        {data?.children.map((item, index) => (
+                            <ListItem key={index} sx={{ padding: 0 }}>
                                 <ButtonBase
                                     onClick={() => {}}
                                     sx={{
@@ -142,12 +150,12 @@ export default function Choice({ width, height, info }: ParameterType) {
                                         overflow: 'hidden',
                                     }}
                                 >
-                                    <Box sx={{ overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>{item.choice_content}
+                                    <Box sx={{ overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>
+                                        {item.choice_content}
                                     </Box>
                                 </ButtonBase>
                             </ListItem>
-                        }
-                        )}
+                        ))}
                     </List>
                 </Box>
             </Box>

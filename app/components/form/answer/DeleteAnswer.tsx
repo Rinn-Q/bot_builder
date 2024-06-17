@@ -9,9 +9,9 @@ interface DeleteAnswerProps {
 export default function DeleteAnswer(props: DeleteAnswerProps) {
   const [open, setOpen] = React.useState(props.open);
 
-  // React.useEffect(() => {
-  //   setOpen(props.open);
-  // }, [props.open]);
+  React.useEffect(() => {
+    setOpen(props.open);
+  }, [props.open]);
 
   // -----------------------------------------------DIALOG handlers----------------------------------------------------------
   const handleClickOpen = () => {

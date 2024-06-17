@@ -85,7 +85,7 @@ export default function Container() {
                         answer ? (
                             <Answer width={100} caption="" description={answer.answer_content} height={100} />
                         ) : (
-                            <AnswerSkelton/>
+                            <AnswerSkelton />
                         )
                     }
                 </div>

@@ -60,17 +60,37 @@ export default function Choice({ width, height, info }: ParameterType) {
             position: 'relative',
             padding: '4px',
         }}>
-            <Box sx={{ padding: 2, maxHeight: '100vh', overflow: 'hidden' }}>
-                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 ,overflow: 'hidden'}}>
-                    <Typography variant="h6" gutterBottom sx={{ flexGrow: 1, textAlign: 'center', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>
-                        hellooooooooooooooooooooooooooooooooooooooooooo
+            <Box sx={{ padding: 2, maxHeight: '100%', overflow: 'hidden' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                    <Typography
+                        variant="h6"
+                        gutterBottom
+                        sx={{ flexGrow: 1, textAlign: 'center', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}
+                    >
+                        {info.choice_content}
                     </Typography>
                     <IconButton ref={anchorRef} sx={{ ml: 1 }} onClick={handleToggle}>
                         <MoreVertIcon />
                     </IconButton>
                 </Box>
-                <Box sx={{ width: '100%', height: 'calc(100vh - 100px)', overflowY: 'scroll', '&::-webkit-scrollbar': { display: 'none' } }}>
-                    <List sx={{ padding: 0 }}>
+                <Box
+                    sx={{
+                        width: '100%',
+                        height: 'calc(100vh - 100px)',
+                        overflowY: 'auto',
+                        '&::-webkit-scrollbar': { display: 'none' },
+                    }}
+                >
+                    <List
+                        sx={{
+                            padding: 0,
+                            width: '100%',
+                            maxWidth: "100%",
+                            position: 'relative',
+                            overflow: 'auto',
+                            maxHeight: "100%",
+                        }}
+                    >
                         {data?.children.map((item, index) => (
                             <ListItem key={index} sx={{ padding: 0 }}>
                                 <ButtonBase

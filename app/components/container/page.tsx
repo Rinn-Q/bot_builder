@@ -28,6 +28,11 @@ export default function Container() {
     const [lastChoice, setlastChoice] = useState<Choices>();
     const [answer, setAnswer] = useState<Answer>();
 
+    const [id , setID ] = useState<Number>()
+    const handleIdChange = (value: number) => {
+        setID(value);
+    }
+
     const fetchChoiceData = async () => {
         try {
             const res = await fetch(`https://8476-66-181-164-203.ngrok-free.app/api/choice/1`, {
@@ -95,10 +100,14 @@ export default function Container() {
                 {
                     firstChoice ? (
                         firstChoice.map((item) => (
+<<<<<<< Updated upstream
                             <Choice key={item.id} width={18} info={item} height={100} onChoiceChange={} />
+=======
+                            <Choice key={item.id} width={18} onIdChange={handleIdChange} info={item} height={100} />
+>>>>>>> Stashed changes
                         ))
                     ) : (
-                        <ChoiceSkelton />
+                        <ChoiceSkelton/>
                         // <div>
                         //   {Array(5).map((_, index) => (
                         //     <ChoiceSkelton key={index} />
@@ -109,7 +118,7 @@ export default function Container() {
             </div>
             <div className="rounded-xl w-full h-2/5 flex justify-between">
                 <div className="box-shadow w-2/5 p-8 mr-10 rounded-xl bg-white">
-                    <Answer width={100} caption="heloo" description="hi" height={100} id={0} choice_id={0} />
+                    <Choice width={18} info={firstChoice[0]}  height={100} />
                 </div>
                 <div className="box-shadow w-3/5 p-8 rounded-xl bg-white">
                     {

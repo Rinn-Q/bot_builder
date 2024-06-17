@@ -13,6 +13,7 @@ import CustomPopper from "../popper/page";
 // Style
 import "./answer.css";
 import EditAnswer from "../form/answer/EditAnswer";
+import DeleteAnswer from "../form/answer/DeleteAnswer";
 
 type typeAnswer = {
     id: number,
@@ -29,8 +30,11 @@ export default function Answer({ id, choice_id, width, height, caption, descript
     const [currentDescription, setCurrentDescription] = useState(description);
 
     // Edit dynamic contents states
-    const [editingCaption, setEditingCaption] = useState(false);
-    const [editingDescription, setEditingDescription] = useState(false);
+    // const [editingCaption, setEditingCaption] = useState(false);
+    // const [editingDescription, setEditingDescription] = useState(false);
+
+    const [isEditAnswerOpen, setIsEditAnswerOpen] = useState(false);
+    const [isDeleteAnswerOpen, setIsDeleteAnswerOpen] = useState(false);
 
     // Popup states
     const [openPopup, setOpenPopup] = useState(false);
@@ -48,15 +52,46 @@ export default function Answer({ id, choice_id, width, height, caption, descript
         setOpenPopup(false);
     };
 
+    // --Edit
+    const handleEditOpen = () => {
+        setIsEditAnswerOpen(true);
+    }
+
+    const handleEditClose = () => {
+        setIsEditAnswerOpen(false);
+    }
+
     // Edit Answer handler
     const handleUpdate = (caption: string, description: string) => {
         setCurrentCaption(caption);
         setCurrentDescription(description);
     }
 
+    // --Delete
+    const handleDeleteOpen = () => {
+        setIsEditAnswerOpen(true);
+    }
+
+    const handleDeleteClose = () => {
+        setIsEditAnswerOpen(false);
+    }
+
+    const deleteHandler = () => {
+        setCurrentCaption("");
+        setCurrentDescription("");
+    }
+
     return (
         <>
-            <EditAnswer id={id} choice_id={choice_id} choice={currentCaption} answer={currentDescription} handleUpdate={handleUpdate} />
+            <EditAnswer
+                id={id}
+                choice_id={choice_id}
+                choice={currentCaption}
+                answer={currentDescription}
+                open={isEditAnswerOpen}
+                handleUpdate={handleUpdate}
+            />
+            <DeleteAnswer deleteHandler={deleteHandler} />
             <div className="container-content circle_edge" style={{ width: `${width}%`, height: `${height}%` }}>
                 <div className="container-holder">
                     <div className="upper_container">
@@ -74,8 +109,8 @@ export default function Answer({ id, choice_id, width, height, caption, descript
                             anchorRef={anchorRef}
                             handleClose={handleClose}
                             buttonData={[
-                                { title: "Засах", icon: Edit },
-                                { title: "Устгах", icon: Delete }
+                                { title: "Засах", icon: Edit, handleEditOpen },
+                                { title: "Устгах", icon: Delete, handleDeleteOpen }
                             ]}
                         />
                     </div>

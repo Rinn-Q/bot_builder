@@ -20,8 +20,10 @@ type typeAnswer = {
 export default function Answer({ id, choice_id, width, height, caption, description }: typeAnswer) {
     const [currentCaption, setCurrentCaption] = useState(caption);
     const [currentDescription, setCurrentDescription] = useState(description);
+
     const [isEditAnswerOpen, setIsEditAnswerOpen] = useState(false);
     const [isDeleteAnswerOpen, setIsDeleteAnswerOpen] = useState(false);
+
     const [openPopup, setOpenPopup] = useState(false);
     const anchorRef = useRef<HTMLButtonElement>(null);
 
@@ -36,6 +38,8 @@ export default function Answer({ id, choice_id, width, height, caption, descript
         setOpenPopup(false);
     };
 
+    // - Edit
+
     const handleEditOpen = () => {
         setIsEditAnswerOpen(true);
     }
@@ -48,6 +52,8 @@ export default function Answer({ id, choice_id, width, height, caption, descript
         setCurrentCaption(caption);
         setCurrentDescription(description);
     }
+
+    // - Delete
 
     const handleDeleteOpen = () => {
         setIsDeleteAnswerOpen(true);
@@ -75,6 +81,7 @@ export default function Answer({ id, choice_id, width, height, caption, descript
             />
             <DeleteAnswer
                 deleteHandler={deleteHandler}
+                onClose={handleDeleteClose}
                 open={isDeleteAnswerOpen}
                 id={id}
             />

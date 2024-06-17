@@ -4,6 +4,7 @@ interface DeleteAnswerProps {
   id: number,
   open: boolean,
   deleteHandler: Function,
+  onClose: () => void;
 }
 
 export default function DeleteAnswer(props: DeleteAnswerProps) {
@@ -12,6 +13,7 @@ export default function DeleteAnswer(props: DeleteAnswerProps) {
   React.useEffect(() => {
     setOpen(props.open);
   }, [props.open]);
+
 
   // -----------------------------------------------DIALOG handlers----------------------------------------------------------
   const handleClickOpen = () => {
@@ -57,7 +59,7 @@ export default function DeleteAnswer(props: DeleteAnswerProps) {
       >
         button
       </button> */}
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={open} onClose={props.onClose}>
         <div className='w-96 h-auto p-6'>
           <div className='mb-4'>
             {

@@ -1,11 +1,13 @@
 import * as React from 'react';
 import Dialog from '@mui/material/Dialog';
 interface DeleteAnswerProps {
+  id: number,
+  open: boolean,
   deleteHandler: Function,
 }
 
 export default function DeleteAnswer(props: DeleteAnswerProps) {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(props.open);
 
   // -----------------------------------------------DIALOG handlers----------------------------------------------------------
   const handleClickOpen = () => {
@@ -23,8 +25,24 @@ export default function DeleteAnswer(props: DeleteAnswerProps) {
 
   const clickDelete = () => {
     //-----uildel logicuud -----
+    deleteDB();
     props.deleteHandler();
     setOpen(false)
+  }
+
+  const deleteDB = async() => {
+    //-----uildel logicuud -----
+    try {
+      const deletedData = fetch(`https://8476-66-181-164-203.ngrok-free.app/api/answer/${props.id}`, {
+        method: 'DELETE',
+        headers: {
+          'ngrok-skip-browser-warning': 'true'
+        }
+      })
+      console.log("deleted data ::::::" + deletedData)
+    } catch(error) {
+      console.log(error)
+    }
   }
   return (
     <div>

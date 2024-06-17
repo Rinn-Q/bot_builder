@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient();
 import Dialog from '@mui/material/Dialog';
 interface EditAnswerProps {
   id: number,
+  open: boolean,
   choice_id: number,
   choice: string,
   answer: string,
@@ -11,7 +10,7 @@ interface EditAnswerProps {
 }
 
 export default function EditAnswer(props: EditAnswerProps) {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(props.open);
   const [answerValue, setAnswerValue] = React.useState(props.answer)
   const [choiceValue, setChoiceValue] = React.useState(props.choice)
 

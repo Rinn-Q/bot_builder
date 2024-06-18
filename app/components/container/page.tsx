@@ -1,6 +1,7 @@
 'use client'
 import React, { useState, useEffect } from "react"
 import Choice from "../choice/page"
+import Choice2 from "../choice_2/page"
 import Answer from "../answer/page"
 import './container.css'
 import AnswerSkelton from "../skelton/AnswerSkelton"
@@ -29,15 +30,19 @@ export default function Container() {
     const [answer, setAnswer] = useState<Answer>();
 
     const [id , setID ] = useState<number>(0)
+    const [id2 , setID2 ] = useState<number>(0)
     const handleIdChange = (value: number) => {
         setID(value);
     }
+    const handleIdChange2 = (value: number) => {
+        setID2(value);
+    }
     console.log(id)
-    console.log(lastChoice)
+    console.log(id2)
 
     const fetchChoiceData = async () => {
         try {
-            const res = await fetch(`https://6885-66-181-164-203.ngrok-free.app/api/choice/1`, {
+            const res = await fetch(`https://6885-66-181-164-203.ngrok-free.app/api/choice/parent/1`, {
                 headers: {
                     'ngrok-skip-browser-warning': 'true'
                 },
@@ -90,12 +95,13 @@ export default function Container() {
             console.log(`Error fetching choice Data : ${error}`);
         }
     }
+    console.log(answer)
 
     useEffect(() => {
         fetchChoiceData();
         fetchLastChoice(id);
-        // fetchAnswerData(id);
-    }, [id])
+        fetchAnswerData(id2);
+    }, [id, id2])
 
     return (
         <div className="w-full h-full bg-slate-100">
@@ -114,7 +120,7 @@ export default function Container() {
                 <div className="box-shadow w-2/5 p-8 mr-10 rounded-xl bg-white">
                     {lastChoice ? (
                         lastChoice.map((item) => (
-                            <Choice key={item.id} width={100} onChoiceChange={handleIdChange} info={item} height={100} />
+                            <Choice2 key={item.id} width={100} onChoiceChange={handleIdChange2} info={item} height={100} />
                         ))
                     ) : (
                         <ChoiceSkelton/>
@@ -122,7 +128,7 @@ export default function Container() {
                 </div>
                 <div className="box-shadow w-3/5 p-8 rounded-xl bg-white">
                     {
-                        answer !== undefined ? (
+                        answer ? (
                             <Answer width={100} caption="" description={answer.answer_content} height={100} id={0} choice_id={0} />
                         ) : (
                             <AnswerSkelton />

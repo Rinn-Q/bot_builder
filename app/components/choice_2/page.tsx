@@ -26,7 +26,7 @@ type ParameterType = {
     onChoiceChange: Function;
 };
 
-export default function Choice({ width, height, info,onChoiceChange }: ParameterType) {
+export default function Choice2({ width, height, info,onChoiceChange }: ParameterType) {
     const [open, setOpen] = React.useState(false);
     const [data, setData] = React.useState<ChoiceModel>();
 

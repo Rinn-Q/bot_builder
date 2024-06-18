@@ -7,11 +7,11 @@ export async function GET(request: Request, { params }: { params: { id: string }
     try {
         const choices = await prisma.choice.findMany({
             where: {
-                parent_id: id
+                id: id
             }
         });
 
-        const choicesWithChildren = await Promise.all(choices.map(async (parentChoice) => {
+        const choicesWithChildren = await Promise.all(choices.map(async (parentChoice: any) => {
             const childChoices = await prisma.choice.findMany({
                 where: {
                     parent_id: parentChoice.id

@@ -21,6 +21,7 @@ interface Choices {
 interface Answer {
     id: number,
     answer_content: string,
+    choice_content: string,
     choice_id: number
 }
 
@@ -89,8 +90,21 @@ export default function Container() {
                 },
                 method: "GET"
             });
-            const answerData: Answer = await res.json();
-            setAnswer(answerData);
+            const choiceres = await fetch(`https://6885-66-181-164-203.ngrok-free.app/api/choice/${id}`, {
+                headers: {
+                    'ngrok-skip-browser-warning': 'true'
+                },
+                method: "GET",
+            });
+            const answerData = await res.json();
+            const choiceData = await choiceres.json();
+            const contentData : Answer = {
+                id: answerData.id,
+                answer_content: answerData.answer_content,
+                choice_content: choiceData.choicesWithChildren[0].choice_content,
+                choice_id: answerData.choice_id
+            }
+            setAnswer(contentData);
         } catch (error) {
             console.log(`Error fetching choice Data : ${error}`);
         }
@@ -129,7 +143,7 @@ export default function Container() {
                 <div className="box-shadow w-3/5 p-8 rounded-xl bg-white">
                     {
                         answer ? (
-                            <Answer width={100} caption="" description={answer.answer_content} height={100} id={0} choice_id={0} />
+                            <Answer width={100} caption={answer.choice_content} description={answer.answer_content} height={100} id={0} choice_id={0} />
                         ) : (
                             <AnswerSkelton />
                         )

@@ -38,7 +38,7 @@ export default function DeleteChoice(props: DeleteChoiceProps) {
   const deleteDB = async() => {
     //-----uildel logicuud -----
     try {
-      const deletedData = fetch(`https://8476-66-181-164-203.ngrok-free.app/api/choice/${props.id}`, {
+      const deletedData = fetch(`https://6885-66-181-164-203.ngrok-free.app/api/choice/${props.id}`, {
         method: 'DELETE',
         headers: {
           'ngrok-skip-browser-warning': 'true'

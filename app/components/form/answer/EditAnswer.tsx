@@ -26,7 +26,7 @@ export default function EditAnswer(props: EditAnswerProps) {
   const handleSave = () => {
     // Logic to update DB
     updateDB();
-    handleUpdate(answerValue, choiceValue);
+    handleUpdate(choiceValue, answerValue);
     onClose();
   };
 

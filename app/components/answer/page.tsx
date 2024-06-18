@@ -72,14 +72,6 @@ export default function Answer({ id, choice_id, width, height, caption, descript
         setCurrentCaption("");
         setCurrentDescription("");
     }
-
-
-
-    console.log("-------")
-    console.log(currentCaption)
-    console.log(currentDescription)
-
-
     return (
         <>
             <EditAnswer

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react"
 import Choice from "../choice/page"
 import Choice2 from "../choice_2/page"
 import Answer from "../answer/page"
-import './container.css'
+// import './container.css'
 import AnswerSkelton from "../skelton/AnswerSkelton"
 import ChoiceSkelton from "../skelton/ChoiceSkelton"
 
@@ -117,11 +117,11 @@ export default function Container() {
 
     return (
         <div className="w-full h-full bg-slate-100">
-            <div className="rounded-xl box-shadow w-full h-1/2 mb-5 p-8 flex justify-between bg-white">
+            <div className="rounded-xl box-shadow w-full h-1/2 mb-5 p-8 bg-white flex" style={{justifyContent: 'flex-start'}}>
                 {
                     firstChoice ? (
                         firstChoice.map((item) => (
-                            <Choice key={item.id} width={18} onChoiceChange={handleIdChange} info={item} height={100} />
+                            <Choice key={item.id} width={32} onChoiceChange={handleIdChange} info={item} height={100} />
                         ))
                     ) : (
                         <ChoiceSkelton />
@@ -141,7 +141,7 @@ export default function Container() {
                 <div className="box-shadow w-3/5 p-8 rounded-xl bg-white">
                     {
                         answer ? (
-                            <Answer width={100} caption={answer.choice_content} description={answer.answer_content} height={100} id={id2} choice_id={id} />
+                            <Answer width={100} caption={answer.choice_content} description={answer.answer_content} height={100} id={answer.id} choice_id={answer.choice_id} />
                         ) : (
                             <AnswerSkelton />
                         )

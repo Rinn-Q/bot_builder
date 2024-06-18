@@ -39,6 +39,7 @@ export default function EditAnswer(props: EditAnswerProps) {
 
   const updateDB = async () => {
     console.log(props.id, " shuu de ho ho ho ho");
+    console.log(props.choice_id)
 
     try {
       const updatedAnswerContent = await fetch(`https://53be-66-181-164-203.ngrok-free.app/api/answer/${props.id}`, {
@@ -62,6 +63,10 @@ export default function EditAnswer(props: EditAnswerProps) {
           new_choice_content: choiceValue,
         })
       });
+
+      console.log(JSON.stringify({
+        new_choice_content: choiceValue,
+      }))
 
       console.log("Answer content :::::" + await updatedChoiceContent.json() + "\n" + "Choice content :::::" + await updatedAnswerContent.json());
     } catch (error) {

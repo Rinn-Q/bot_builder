@@ -13,6 +13,7 @@ interface EditAnswerProps {
 
 export default function EditAnswer(props: EditAnswerProps) {
   const { open, choice, answer, onClose, handleUpdate } = props;
+  const [answerId, setAnswerId] = React.useState(0);
   const [answerValue, setAnswerValue] = React.useState(answer);
   const [choiceValue, setChoiceValue] = React.useState(choice);
 
@@ -21,6 +22,12 @@ export default function EditAnswer(props: EditAnswerProps) {
     setAnswerValue(answer);
     setChoiceValue(choice);
   }, [answer, choice]);
+
+  React.useEffect(() => {
+    setAnswerId(props.id)
+  }, [props.id]);
+
+  console.log(answerValue);
 
   // Handlers
   const handleSave = () => {
@@ -31,8 +38,10 @@ export default function EditAnswer(props: EditAnswerProps) {
   };
 
   const updateDB = async () => {
+    console.log(props.id, " shuu de ho ho ho ho");
+
     try {
-      const updatedAnswerContent = await fetch(`https://8476-66-181-164-203.ngrok-free.app/api/answer/${props.id}`, {
+      const updatedAnswerContent = await fetch(`https://53be-66-181-164-203.ngrok-free.app/api/answer/${props.id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -43,18 +52,18 @@ export default function EditAnswer(props: EditAnswerProps) {
         })
       });
 
-      const updatedChoiceContent = await fetch(`https://8476-66-181-164-203.ngrok-free.app/api/choice/${props.choice_id}`, {
+      const updatedChoiceContent = await fetch(`https://53be-66-181-164-203.ngrok-free.app/api/choice/${props.choice_id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
           'ngrok-skip-browser-warning': 'true'
         },
         body: JSON.stringify({
-          choice_content: choiceValue,
+          new_choice_content: choiceValue,
         })
       });
 
-      console.log("Answer content :::::" + updatedChoiceContent + "\n" + "Choice content :::::" + updatedAnswerContent);
+      console.log("Answer content :::::" + await updatedChoiceContent.json() + "\n" + "Choice content :::::" + await updatedAnswerContent.json());
     } catch (error) {
       console.error(error);
     }

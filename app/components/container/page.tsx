@@ -30,8 +30,8 @@ export default function Container() {
     const [lastChoice, setlastChoice] = useState<Choices[]>([]);
     const [answer, setAnswer] = useState<Answer>();
 
-    const [id , setID ] = useState<number>(0)
-    const [id2 , setID2 ] = useState<number>(0)
+    const [id, setID] = useState<number>(0)
+    const [id2, setID2] = useState<number>(0)
     const handleIdChange = (value: number) => {
         setID(value);
     }
@@ -41,7 +41,7 @@ export default function Container() {
 
     const fetchChoiceData = async () => {
         try {
-            const res = await fetch(`https://6885-66-181-164-203.ngrok-free.app/api/choice/parent/1`, {
+            const res = await fetch(`https://53be-66-181-164-203.ngrok-free.app/api/choice/parent/1`, {
                 headers: {
                     'ngrok-skip-browser-warning': 'true'
                 },
@@ -61,7 +61,7 @@ export default function Container() {
 
     const fetchLastChoice = async (id: number) => {
         try {
-            const res = await fetch(`https://6885-66-181-164-203.ngrok-free.app/api/choice/${id}`, {
+            const res = await fetch(`https://53be-66-181-164-203.ngrok-free.app/api/choice/${id}`, {
                 headers: {
                     'ngrok-skip-browser-warning': 'true'
                 },
@@ -82,13 +82,13 @@ export default function Container() {
 
     const fetchAnswerData = async (id: number) => {
         try {
-            const res = await fetch(`https://6885-66-181-164-203.ngrok-free.app/api/answer/${id}`, {
+            const res = await fetch(`https://53be-66-181-164-203.ngrok-free.app/api/answer/${id}`, {
                 headers: {
                     'ngrok-skip-browser-warning': 'true'
                 },
                 method: "GET"
             });
-            const choiceres = await fetch(`https://6885-66-181-164-203.ngrok-free.app/api/choice/${id}`, {
+            const choiceres = await fetch(`https://53be-66-181-164-203.ngrok-free.app/api/choice/${id}`, {
                 headers: {
                     'ngrok-skip-browser-warning': 'true'
                 },
@@ -96,7 +96,7 @@ export default function Container() {
             });
             const answerData = await res.json();
             const choiceData = await choiceres.json();
-            const contentData : Answer = {
+            const contentData: Answer = {
                 id: answerData.id,
                 answer_content: answerData.answer_content,
                 choice_content: choiceData.choicesWithChildren[0].choice_content,
@@ -124,7 +124,7 @@ export default function Container() {
                             <Choice key={item.id} width={18} onChoiceChange={handleIdChange} info={item} height={100} />
                         ))
                     ) : (
-                        <ChoiceSkelton/>
+                        <ChoiceSkelton />
                     )
                 }
             </div>
@@ -135,7 +135,7 @@ export default function Container() {
                             <Choice2 key={item.id} width={100} onChoiceChange={handleIdChange2} info={item} height={100} />
                         ))
                     ) : (
-                        <ChoiceSkelton/>
+                        <ChoiceSkelton />
                     )}
                 </div>
                 <div className="box-shadow w-3/5 p-8 rounded-xl bg-white">

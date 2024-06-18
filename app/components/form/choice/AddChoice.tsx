@@ -45,7 +45,7 @@ export default function AddChoice(props: AddChoiceProps) {
   const addDB = async() => {
     //-----uildel logicuud -----
     try {
-      const addedData = await fetch(`https://6885-66-181-164-203.ngrok-free.app/api/choice`, {
+      const addedData = await fetch(`https://53be-66-181-164-203.ngrok-free.app/api/choice`, {
         method: 'POST',
         headers: {
           'ngrok-skip-browser-warning': 'true'

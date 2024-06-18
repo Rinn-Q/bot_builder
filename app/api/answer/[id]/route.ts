@@ -33,30 +33,18 @@ export async function GET(request: Request, { params }: { params: { id: string }
     }
 }
 
-export async function OPTIONS() {
-    return new NextResponse(null, {
-        status: 200,
-        headers: {
-            'Access-Control-Allow-Credentials': 'true',
-            'Access-Control-Allow-Origin': '*', // Use '*' for testing, replace with specific domain in production
-            'Access-Control-Allow-Methods': 'GET,DELETE,PATCH,POST,PUT',
-            'Access-Control-Allow-Headers': 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, ngrok-skip-browser-warning',
-        }
-    });
-}
-
 export async function PATCH(request: Request, { params }: { params: { id: string } }) {
     const id = Number(params.id);
     const { new_answer_content } = await request.json();
-    console.log(id, " shuu de ho");
-    // if (!new_answer_content) {
-    //     return Response.json({
-    //         message: "Invalid request",
-    //     },
-    //         {
-    //             status: 400
-    //         });
-    // }
+
+    if (!new_answer_content) {
+        return Response.json({
+            message: "Invalid request",
+        },
+            {
+                status: 400
+            });
+    }
 
     try {
         const updatedAnswer = await prisma.answer.update({
@@ -66,7 +54,7 @@ export async function PATCH(request: Request, { params }: { params: { id: string
             data: { answer_content: new_answer_content }
         });
 
-        return Response.json(updatedAnswer)
+        return Response.json({ data: updatedAnswer }, { status: 200 })
     }
     catch (error: any) {
         console.error("Хариултыг засах алдаа гарлаа:", error);

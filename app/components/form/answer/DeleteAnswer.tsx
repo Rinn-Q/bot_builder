@@ -41,7 +41,7 @@ export default function DeleteAnswer(props: DeleteAnswerProps) {
   const deleteDB = async () => {
     //-----uildel logicuud -----
     try {
-      const deletedData = fetch(`https://8476-66-181-164-203.ngrok-free.app/api/answer/${props.id}`, {
+      const deletedData = fetch(`https://53be-66-181-164-203.ngrok-free.app/api/answer/${props.id}`, {
         method: 'DELETE',
         headers: {
           'ngrok-skip-browser-warning': 'true'

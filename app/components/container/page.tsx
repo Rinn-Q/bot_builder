@@ -141,7 +141,7 @@ export default function Container() {
                 <div className="box-shadow w-3/5 p-8 rounded-xl bg-white">
                     {
                         answer ? (
-                            <Answer width={100} caption={answer.choice_content} description={answer.answer_content} height={100} id={id2} choice_id={id} />
+                            <Answer width={100} caption={answer.choice_content} description={answer.answer_content} height={100} id={answer.id} choice_id={answer.choice_id} />
                         ) : (
                             <AnswerSkelton />
                         )

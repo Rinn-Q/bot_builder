@@ -37,7 +37,7 @@ export default function Container() {
 
     const fetchChoiceData = async () => {
         try {
-            const res = await fetch(`https://6885-66-181-164-203.ngrok-free.app/api/choice/1`, {
+            const res = await fetch(`https://6885-66-181-164-203.ngrok-free.app/api/choice/parent/1`, {
                 headers: {
                     'ngrok-skip-browser-warning': 'true'
                 },

@@ -1,5 +1,5 @@
 "use client"
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { IconButton } from "@mui/material";
 import { Edit, Delete } from '@mui/icons-material';
@@ -21,14 +21,16 @@ export default function Answer({ id, choice_id, width, height, caption, descript
     const [currentCaption, setCurrentCaption] = useState(caption);
     const [currentDescription, setCurrentDescription] = useState(description);
 
-    console.log(caption)
-    console.log(description)
-
     const [isEditAnswerOpen, setIsEditAnswerOpen] = useState(false);
     const [isDeleteAnswerOpen, setIsDeleteAnswerOpen] = useState(false);
 
     const [openPopup, setOpenPopup] = useState(false);
     const anchorRef = useRef<HTMLButtonElement>(null);
+
+    useEffect(() => {
+        setCurrentCaption(caption)
+        setCurrentDescription(description);
+    }, [caption, description]);
 
     const handleToggle = () => {
         setOpenPopup((prevOpen) => !prevOpen);
@@ -70,6 +72,13 @@ export default function Answer({ id, choice_id, width, height, caption, descript
         setCurrentCaption("");
         setCurrentDescription("");
     }
+
+
+
+    console.log("-------")
+    console.log(currentCaption)
+    console.log(currentDescription)
+
 
     return (
         <>

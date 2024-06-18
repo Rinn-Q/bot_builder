@@ -21,6 +21,9 @@ export default function Answer({ id, choice_id, width, height, caption, descript
     const [currentCaption, setCurrentCaption] = useState(caption);
     const [currentDescription, setCurrentDescription] = useState(description);
 
+    console.log(caption)
+    console.log(description)
+
     const [isEditAnswerOpen, setIsEditAnswerOpen] = useState(false);
     const [isDeleteAnswerOpen, setIsDeleteAnswerOpen] = useState(false);
 

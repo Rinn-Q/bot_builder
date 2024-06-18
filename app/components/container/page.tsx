@@ -38,8 +38,6 @@ export default function Container() {
     const handleIdChange2 = (value: number) => {
         setID2(value);
     }
-    console.log(id)
-    console.log(id2)
 
     const fetchChoiceData = async () => {
         try {

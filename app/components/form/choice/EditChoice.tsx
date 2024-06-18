@@ -18,8 +18,8 @@ export default function EditChoice(props: EditChoiceProps) {
   }, [props.open]);
 
   React.useEffect(() => {
-    setChoiceContent(props.choice_content);
-  }, [props.choice_content]);
+    setChoiceContent(choice_content);
+  }, [choice_content]);
   // -----------------------------------DIALOG handlers---------------------------------------------------
   const handleClose = () => {
     setOpen(false);

@@ -25,17 +25,17 @@ interface Answer {
 
 export default function Container() {
     const [firstChoice, setFirstChoice] = useState<Choices[]>([]);
-    const [lastChoice, setlastChoice] = useState<Choices>();
+    const [lastChoice, setlastChoice] = useState<Choices>(firstChoice[0]);
     const [answer, setAnswer] = useState<Answer>();
 
-    const [id , setID ] = useState<Number>()
+    const [id , setID ] = useState<number>(0)
     const handleIdChange = (value: number) => {
         setID(value);
     }
 
     const fetchChoiceData = async () => {
         try {
-            const res = await fetch(`https://8476-66-181-164-203.ngrok-free.app/api/choice/1`, {
+            const res = await fetch(`https://6885-66-181-164-203.ngrok-free.app/api/choice/1`, {
                 headers: {
                     'ngrok-skip-browser-warning': 'true'
                 },
@@ -55,7 +55,7 @@ export default function Container() {
 
     const fetchLastChoice = async (id: number) => {
         try {
-            const res = await fetch(`https://8476-66-181-164-203.ngrok-free.app/api/answer/${id}`, {
+            const res = await fetch(`https://6885-66-181-164-203.ngrok-free.app/api/answer/${id}`, {
                 headers: {
                     'ngrok-skip-browser-warning': 'true'
                 },
@@ -76,7 +76,7 @@ export default function Container() {
 
     const fetchAnswerData = async (id: number) => {
         try {
-            const res = await fetch(`https://8476-66-181-164-203.ngrok-free.app/api/answer/${id}`, {
+            const res = await fetch(`https://6885-66-181-164-203.ngrok-free.app/api/answer/${id}`, {
                 headers: {
                     'ngrok-skip-browser-warning': 'true'
                 },
@@ -91,7 +91,8 @@ export default function Container() {
 
     useEffect(() => {
         fetchChoiceData();
-        fetchAnswerData(61);
+        fetchLastChoice(id);
+        fetchAnswerData(id);
     }, [])
 
     return (
@@ -104,17 +105,16 @@ export default function Container() {
                         ))
                     ) : (
                         <ChoiceSkelton/>
-                        // <div>
-                        //   {Array(5).map((_, index) => (
-                        //     <ChoiceSkelton key={index} />
-                        //   ))}
-                        // </div>
                     )
                 }
             </div>
             <div className="rounded-xl w-full h-2/5 flex justify-between">
                 <div className="box-shadow w-2/5 p-8 mr-10 rounded-xl bg-white">
-                    {/* <Choice width={18} info={firstChoice[0]}  height={100} /> */}
+                    lastChoice ? (
+                        <Choice width={18} onChoiceChange={handleIdChange} info={lastChoice} height={100} />
+                    ) : (
+                        <ChoiceSkelton/>
+                    )
                 </div>
                 <div className="box-shadow w-3/5 p-8 rounded-xl bg-white">
                     {

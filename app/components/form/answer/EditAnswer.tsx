@@ -48,7 +48,7 @@ export default function EditAnswer(props: EditAnswerProps) {
           'ngrok-skip-browser-warning': 'true'
         },
         body: JSON.stringify({
-          answer_content: answerValue,
+          new_answer_content: answerValue,
         })
       });
 

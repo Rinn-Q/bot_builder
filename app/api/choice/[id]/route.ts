@@ -40,14 +40,14 @@ export async function PATCH(request: Request, { params }: { params: { id: string
     const id = Number(params.id);
     const { new_choice_content } = await request.json();
 
-    if (!new_choice_content) {
-        return Response.json({
-            message: "Invalid request",
-        },
-            {
-                status: 400
-            });
-    }
+    // if (!new_choice_content) {
+    //     return Response.json({
+    //         message: "Invalid request",
+    //     },
+    //         {
+    //             status: 400
+    //         });
+    // }
 
     try {
         const updatedChoice = await prisma.choice.update({
@@ -59,7 +59,7 @@ export async function PATCH(request: Request, { params }: { params: { id: string
             }
         });
 
-        return Response.json({ data: updatedChoice }, { status: 200 })
+        return Response.json(updatedChoice)
     }
     catch (error: any) {
         return Response.json({

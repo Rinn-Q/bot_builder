@@ -3,20 +3,9 @@ import React, { useState, useEffect } from "react";
 import Choice from "../choice/page";
 import Choice2 from "../choice_2/page";
 import Answer from "../answer/page";
-import CustomPopper from "../popper/page";
-import { AddBox, Edit, Delete } from "@mui/icons-material";
 import AddIcon from "@mui/icons-material/Add";
-import {
-  Typography,
-  ListItem,
-  List,
-  Box,
-  IconButton,
-  ButtonBase,
-} from "@mui/material";
+import { IconButton } from "@mui/material";
 import AddChoice from "../form/choice/AddChoice";
-import EditChoice from "../form/choice/EditChoice";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import AnswerSkelton from "../skelton/AnswerSkelton";
 import ChoiceSkelton from "../skelton/ChoiceSkelton";
 
@@ -149,14 +138,6 @@ export default function Container() {
     firstChoice.push(data);
     setFirstChoice(firstChoice);
   };
-  //   id: number;
-  //   choice_content: string;
-  //   parent_id: number;
-  //   children: Array<{
-  //     id: number;
-  //     choice_content: string;
-  //     parent_id: number;
-  //   }>;
 
   useEffect(() => {
     fetchChoiceData();

@@ -129,7 +129,7 @@ export default function Choice({
                 width: "100%",
                 minWidth: "300px",
                 maxWidth: "500px",
-                height: "100%",
+                // height: "100%",
                 minHeight: "300px",
                 maxHeight: "600px",
             }}

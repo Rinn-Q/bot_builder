@@ -97,14 +97,19 @@ export default function Choice({ width, height, info, onChoiceChange }: Paramete
 
     return (
         <Container maxWidth="sm" sx={{
-            width: `${width}%`,
-            height: `${height}%`,
+            // // width: `${width}%`,
+            // // height: `${height}%`,
+            // position: 'relative',
+            // padding: '2px'
+
             borderRadius: 4,
             bgcolor: '#F0FFF1',
-            position: 'relative',
-            padding: '2px',
-            // maxWidth: `${width}`
-
+            width: '100%',
+            minWidth: '300px',
+            maxWidth: '500px',
+            height: '100%',
+            minHeight: '300px',
+            maxHeight: '600px',
         }}>
             <Box sx={{ padding: 2, maxHeight: '100%', overflow: 'auto', '&::-webkit-scrollbar': { display: 'none' } }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>

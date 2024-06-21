@@ -22,11 +22,11 @@ interface ChoiceModel {
 type ParameterType = {
     height: number;
     width: number;
-    info: ChoiceModel ;
+    info: ChoiceModel;
     onChoiceChange: Function;
 };
 
-export default function Choice2({ width, height, info,onChoiceChange }: ParameterType) {
+export default function Choice2({ width, height, info, onChoiceChange }: ParameterType) {
     const [open, setOpen] = React.useState(false);
     const [data, setData] = React.useState<ChoiceModel>();
 
@@ -58,9 +58,9 @@ export default function Choice2({ width, height, info,onChoiceChange }: Paramete
     }
     const addHandler = (added: any) => {
         const choice = {
-            id : 1234,
-            choice_content : added.choice_content,
-            parent_id : added.parent_id
+            id: 1234,
+            choice_content: added.choice_content,
+            parent_id: added.parent_id
         }
         console.log(`~~~~~~~~~~~~~${added.choice_content}`);
         info.children.push(choice);
@@ -68,7 +68,7 @@ export default function Choice2({ width, height, info,onChoiceChange }: Paramete
     }
     const editHandler = (content: string) => {
         setChoiceContent(content);
-        info.choice_content=content;
+        info.choice_content = content;
     }
     React.useEffect(() => {
         setData(info);
@@ -104,7 +104,7 @@ export default function Choice2({ width, height, info,onChoiceChange }: Paramete
             position: 'relative',
             padding: '4px',
         }}>
-        <Box sx={{ padding: 2, maxHeight: '100%', overflow: 'auto','&::-webkit-scrollbar': { display: 'none' }, }}>
+            <Box sx={{ padding: 2, maxHeight: '100%', overflow: 'auto', '&::-webkit-scrollbar': { display: 'none' }, }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                     <Typography
                         variant="h6"
@@ -119,7 +119,7 @@ export default function Choice2({ width, height, info,onChoiceChange }: Paramete
                 <Box
                     sx={{
                         width: '100%',
-                        maxHeight: 'calc(100vh - 200px)', 
+                        maxHeight: 'calc(100vh - 200px)',
                         overflowY: 'auto',
                     }}
                 >
@@ -165,8 +165,8 @@ export default function Choice2({ width, height, info,onChoiceChange }: Paramete
                 id={info.id}
                 open={isEditOpen}
                 handleUpdate={editHandler}
-                onClose={handleEditClose} 
-                choice_content={content}/>
+                onClose={handleEditClose}
+                choice_content={content} />
             <DeleteChoice
                 deleteHandler={deleteHandler}
                 onClose={handleDeleteClose}
@@ -175,8 +175,8 @@ export default function Choice2({ width, height, info,onChoiceChange }: Paramete
             />
             <AddChoice
                 onClose={handleAddClose}
-                open={isAddOpen} 
-                parent_id={info.id} 
+                open={isAddOpen}
+                parent_id={info.id}
                 addChoiceHandler={addHandler}
             />
             <CustomPopper
@@ -196,7 +196,7 @@ export default function Choice2({ width, height, info,onChoiceChange }: Paramete
                         title: 'Устгах', icon: Delete,
                         handlePopup: handleDeleteOpen
                     },
-                ]}/>
+                ]} />
         </Container>
     );
 }

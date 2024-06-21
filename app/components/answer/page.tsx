@@ -88,6 +88,7 @@ export default function Answer({ id, choice_id, width, height, caption, descript
                 onClose={handleDeleteClose}
                 open={isDeleteAnswerOpen}
                 id={id}
+                choice_id={choice_id}
             />
             <div className="container-content circle_edge" style={{ width: `${width}%`, height: `${height}%` }}>
                 <div className="container-holder">

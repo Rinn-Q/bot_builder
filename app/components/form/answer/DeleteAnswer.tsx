@@ -1,9 +1,10 @@
-import * as React from 'react';
-import Dialog from '@mui/material/Dialog';
+import * as React from "react";
+import Dialog from "@mui/material/Dialog";
 interface DeleteAnswerProps {
-  id: number,
-  open: boolean,
-  deleteHandler: Function,
+  choice_id: number;
+  id: number;
+  open: boolean;
+  deleteHandler: Function;
   onClose: () => void;
 }
 
@@ -16,7 +17,6 @@ export default function DeleteAnswer(props: DeleteAnswerProps) {
     console.log("state:", open);
   }, [props.open]);
 
-
   // -----------------------------------------------DIALOG handlers----------------------------------------------------------
   const handleClickOpen = () => {
     setOpen(true);
@@ -28,30 +28,42 @@ export default function DeleteAnswer(props: DeleteAnswerProps) {
 
   // -----------------------------------------------BUTTON handlers----------------------------------------------------------
   const clickCancel = () => {
-    setOpen(false)
-  }
+    setOpen(false);
+  };
 
   const clickDelete = () => {
     //-----uildel logicuud -----
     deleteDB();
     props.deleteHandler();
-    setOpen(false)
-  }
+    setOpen(false);
+  };
 
   const deleteDB = async () => {
     //-----uildel logicuud -----
     try {
-      const deletedData = fetch(`https://9389-66-181-164-203.ngrok-free.app/api/answer/${props.id}`, {
-        method: 'DELETE',
-        headers: {
-          'ngrok-skip-browser-warning': 'true'
+      const deletedData = fetch(
+        `https://9389-66-181-164-203.ngrok-free.app/api/answer/${props.id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "ngrok-skip-browser-warning": "true",
+          },
         }
-      })
-      console.log("deleted data ::::::" + deletedData)
+      );
+      const deletedChoice = fetch(
+        `https://9389-66-181-164-203.ngrok-free.app/api/choice/${props.choice_id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "ngrok-skip-browser-warning": "true",
+          },
+        }
+      );
+      console.log("deleted data ::::::" + deletedData + deletedChoice);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
   return (
     <div>
       {/* <button
@@ -62,26 +74,22 @@ export default function DeleteAnswer(props: DeleteAnswerProps) {
         button
       </button> */}
       <Dialog open={open} onClose={props.onClose}>
-        <div className='w-96 h-auto p-6'>
-          <div className='mb-4'>
-            {
-              `Та итгэлтэй байна уу?`
-            }
-          </div>
-          <div className='flex justify-around'>
+        <div className="w-96 h-auto p-6">
+          <div className="mb-4">{`Та итгэлтэй байна уу?`}</div>
+          <div className="flex justify-around">
             <button
               type="button"
               onClick={props.onClose}
-              className='px-4 py-1 rounded-md font-sans text-white'
-              style={{ backgroundColor: '#FF5630' }}
+              className="px-4 py-1 rounded-md font-sans text-white"
+              style={{ backgroundColor: "#FF5630" }}
             >
               буцах
             </button>
             <button
               type="button"
               onClick={clickDelete}
-              className='px-4 py-1 rounded-md font-sans text-white'
-              style={{ backgroundColor: '#22C55E' }}
+              className="px-4 py-1 rounded-md font-sans text-white"
+              style={{ backgroundColor: "#22C55E" }}
             >
               устгах
             </button>

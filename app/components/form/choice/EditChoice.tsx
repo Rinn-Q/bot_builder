@@ -42,7 +42,7 @@ export default function EditChoice(props: EditChoiceProps) {
   const editDB = async () => {
     try {
       const response = await fetch(
-        `https://a428-66-181-164-203.ngrok-free.app/api/choice/${props.id}`,
+        `https://9389-66-181-164-203.ngrok-free.app/api/choice/${props.id}`,
         {
           method: "PATCH",
           headers: {

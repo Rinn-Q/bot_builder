@@ -69,7 +69,7 @@ export default function Answer({ id, choice_id, width, height, caption, descript
     }
 
     const deleteHandler = () => {
-        setCurrentCaption("");
+        // setCurrentCaption("");
         setCurrentDescription("");
     }
     return (

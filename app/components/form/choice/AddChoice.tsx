@@ -44,7 +44,7 @@ export default function AddChoice(props: AddChoiceProps) {
     //-----uildel logicuud -----
     try {
       const addedData = await fetch(
-        `https://a428-66-181-164-203.ngrok-free.app/api/choice`,
+        `https://9389-66-181-164-203.ngrok-free.app/api/choice`,
         {
           method: "POST",
           headers: {

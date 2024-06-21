@@ -140,10 +140,13 @@ export default function Container() {
   };
 
   useEffect(() => {
-    fetchChoiceData();
     fetchLastChoice(id);
     fetchAnswerData(id2);
-  }, [id, id2, firstChoice]);
+  }, [id, id2]);
+
+  useEffect(() => {
+    fetchChoiceData();
+  }, [firstChoice]);
 
   return (
     <div className="w-full h-full bg-slate-100">

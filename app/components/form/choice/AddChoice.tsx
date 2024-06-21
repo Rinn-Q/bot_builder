@@ -26,11 +26,13 @@ export default function AddChoice(props: AddChoiceProps) {
 
   const handleClose = () => {
     setOpen(false);
+    setChoiceContent("");
   };
 
   // -----------------------------------------------BUTTON handlers----------------------------------------------------------
   const clickCancel = () => {
     setOpen(false);
+    setChoiceContent("");
   };
 
   const clickAdd = async () => {
@@ -38,6 +40,7 @@ export default function AddChoice(props: AddChoiceProps) {
     const data = await addDB();
     props.addChoiceHandler(data);
     props.onClose();
+    setChoiceContent("");
   };
 
   const addDB = async () => {

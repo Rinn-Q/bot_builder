@@ -3,20 +3,9 @@ import React, { useState, useEffect } from "react";
 import Choice from "../choice/page";
 import Choice2 from "../choice_2/page";
 import Answer from "../answer/page";
-import CustomPopper from "../popper/page";
-import { AddBox, Edit, Delete } from "@mui/icons-material";
 import AddIcon from "@mui/icons-material/Add";
-import {
-    Typography,
-    ListItem,
-    List,
-    Box,
-    IconButton,
-    ButtonBase,
-} from "@mui/material";
+import { IconButton } from "@mui/material";
 import AddChoice from "../form/choice/AddChoice";
-import EditChoice from "../form/choice/EditChoice";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import AnswerSkelton from "../skelton/AnswerSkelton";
 import ChoiceSkelton from "../skelton/ChoiceSkelton";
 
@@ -44,6 +33,9 @@ export default function Container() {
     const [answer, setAnswer] = useState<Answer>();
     const anchorRef = React.useRef<HTMLButtonElement>(null);
     const [isAddOpen, setIsAddOpen] = React.useState(false);
+
+    const [counter, setCounter] = useState(0);
+
     const handleAddOpen = () => {
         setIsAddOpen(true);
     };
@@ -63,7 +55,7 @@ export default function Container() {
     const fetchChoiceData = async () => {
         try {
             const res = await fetch(
-                `https://ebdd-66-181-164-203.ngrok-free.app/api/choice/parent/1`,
+                `https://a428-66-181-164-203.ngrok-free.app/api/choice/parent/1`,
                 {
                     headers: {
                         "ngrok-skip-browser-warning": "true",
@@ -86,7 +78,7 @@ export default function Container() {
     const fetchLastChoice = async (id: number) => {
         try {
             const res = await fetch(
-                `https://ebdd-66-181-164-203.ngrok-free.app/api/choice/${id}`,
+                `https://a428-66-181-164-203.ngrok-free.app/api/choice/${id}`,
                 {
                     headers: {
                         "ngrok-skip-browser-warning": "true",
@@ -109,7 +101,7 @@ export default function Container() {
     const fetchAnswerData = async (id: number) => {
         try {
             const res = await fetch(
-                `https://ebdd-66-181-164-203.ngrok-free.app/api/answer/${id}`,
+                `https://a428-66-181-164-203.ngrok-free.app/api/answer/${id}`,
                 {
                     headers: {
                         "ngrok-skip-browser-warning": "true",
@@ -118,7 +110,7 @@ export default function Container() {
                 }
             );
             const choiceres = await fetch(
-                `https://ebdd-66-181-164-203.ngrok-free.app/api/choice/${id}`,
+                `https://a428-66-181-164-203.ngrok-free.app/api/choice/${id}`,
                 {
                     headers: {
                         "ngrok-skip-browser-warning": "true",
@@ -141,28 +133,24 @@ export default function Container() {
     };
     const addHandler = async (added: any) => {
         const data = {
-            id: 1234,
+            id: 3,
             choice_content: added.choice_content,
             parent_id: added.parent_id,
             children: [],
         };
         firstChoice.push(data);
         setFirstChoice(firstChoice);
+        setCounter(1);
     };
-    //   id: number;
-    //   choice_content: string;
-    //   parent_id: number;
-    //   children: Array<{
-    //     id: number;
-    //     choice_content: string;
-    //     parent_id: number;
-    //   }>;
+
+    useEffect(() => {
+        fetchLastChoice(id);
+        fetchAnswerData(id2);
+    }, [id, id2]);
 
     useEffect(() => {
         fetchChoiceData();
-        fetchLastChoice(id);
-        fetchAnswerData(id2);
-    }, [id, id2, firstChoice]);
+    }, [counter]);
 
     return (
         <div className="w-full h-full bg-slate-100">

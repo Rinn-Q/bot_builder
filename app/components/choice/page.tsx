@@ -97,7 +97,7 @@ export default function Choice({ width, height, info, onChoiceChange }: Paramete
 
     return (
         <Container maxWidth="sm" sx={{
-            // width: `${width}%`,
+            width: `${width}%`,
             height: `${height}%`,
             borderRadius: 4,
             bgcolor: '#F0FFF1',
@@ -106,7 +106,7 @@ export default function Choice({ width, height, info, onChoiceChange }: Paramete
             // maxWidth: `${width}`
 
         }}>
-            <Box sx={{ padding: 2, maxHeight: '100%', overflow: 'auto', '&::-webkit-scrollbar': { display: 'none' }, }}>
+            <Box sx={{ padding: 2, maxHeight: '100%', overflow: 'auto', '&::-webkit-scrollbar': { display: 'none' } }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                     <Typography
                         variant="h6"
@@ -120,7 +120,7 @@ export default function Choice({ width, height, info, onChoiceChange }: Paramete
                 </Box>
                 <Box
                     sx={{
-                        // width: '100%',
+                        width: '100%',
                         maxHeight: 'calc(100vh - 200px)',
                         overflowY: 'auto',
                     }}

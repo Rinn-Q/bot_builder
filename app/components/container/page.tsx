@@ -185,9 +185,7 @@ export default function Container() {
       </div>
       <div className="rounded-xl w-full h-2/5 flex justify-between">
         <div className="box-shadow w-2/5 p-8 mr-10 rounded-xl bg-white">
-          <p className="font-bold text-2xl pb-4 font-sans pl-3">
-            Доторх сонголтууд
-          </p>
+          <p className="font-bold text-2xl pb-4 pl-3">Доторх сонголтууд</p>
           {lastChoice ? (
             lastChoice.map((item) => (
               <Choice2

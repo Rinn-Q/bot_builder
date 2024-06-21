@@ -167,7 +167,7 @@ export default function Container() {
   return (
     <div className="w-full h-full bg-slate-100">
       <div
-        className="rounded-xl box-shadow w-full h-1/2 mb-5 p-8 bg-white flex"
+        className="rounded-xl box-shadow w-full h-1/2 mb-5 p-8 bg-white flex overflow-x-auto gap-5"
         style={{ justifyContent: "flex-start" }}
       >
         {firstChoice ? (

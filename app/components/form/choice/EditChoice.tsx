@@ -68,12 +68,12 @@ export default function EditChoice(props: EditChoiceProps) {
     <div>
       <Dialog open={open} onClose={handleClose}>
         <div className="w-96 h-auto p-6">
-          <p className="font-mono">өөрчлөх утгаа оруулна уу</p>
+          <p className="font-mono">Өөрчлөх утгаа оруулна уу</p>
           <input
             type="text"
             value={choice_content}
             onChange={(e) => setChoiceContent(e.target.value)}
-            className={`p-2 mb-3 rounded-xl border-slate-300 font-mono font-semibold w-full ${choice_content ? "border-green-400" : ""}`}
+            className={`p-2 mb-3 rounded-xl border-slate-300 font-mono font-semibold w-full border border-green`}
           />
           <div className="flex justify-around">
             <button

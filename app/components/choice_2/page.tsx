@@ -94,7 +94,6 @@ export default function Choice2({ width, height, info, onChoiceChange }: Paramet
         }
         prevOpen.current = open;
     }, [open]);
-
     return (
         <Container maxWidth="sm" sx={{
             width: `${width}%`,
@@ -104,7 +103,8 @@ export default function Choice2({ width, height, info, onChoiceChange }: Paramet
             position: 'relative',
             padding: '4px',
         }}>
-            <Box sx={{ padding: 2, maxHeight: '100%', overflow: 'auto', '&::-webkit-scrollbar': { display: 'none' }, }}>
+            {/* <Box sx={{ padding: 2, maxHeight: '100%', overflow: 'auto', '&::-webkit-scrollbar': { display: 'none' }, }}> */}
+            <Box sx={{ padding: 2, maxHeight: '100%' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                     <Typography
                         variant="h6"
@@ -120,17 +120,26 @@ export default function Choice2({ width, height, info, onChoiceChange }: Paramet
                     sx={{
                         width: '100%',
                         maxHeight: 'calc(100vh - 200px)',
-                        overflowY: 'auto',
+                        // overflowY: 'auto',
+                        // overflowY: 'auto'
                     }}
                 >
                     <List
                         sx={{
+                            // padding: 0,
+                            // width: '100%',
+                            // maxWidth: "100%",
+                            // position: 'relative',
+                            // overflowY: 'auto',
+                            // // height: "100%",
+                            // maxHeight: '100px',
+
                             padding: 0,
                             width: '100%',
-                            maxWidth: "100%",
+                            maxWidth: '100%',
                             position: 'relative',
                             overflowY: 'auto',
-                            maxHeight: '100%',
+                            maxHeight: 'calc(30vh - 100px)',
                         }}
                     >
                         {data?.children.map((item, index) => (

@@ -88,7 +88,7 @@ export default function EditAnswer(props: EditAnswerProps) {
         <textarea
           value={answerValue}
           onChange={(e) => setAnswerValue(e.target.value)}
-          className={`p-2 mb-3 rounded-xl border border-slate-300 font-sans w-full ${choiceValue ? 'border-green-400' : ''}`}
+          className={`p-2 mb-3 rounded-xl border border-slate-300 font-sans w-full border-green-400`}
         />
         <div className='flex justify-around'>
           <button

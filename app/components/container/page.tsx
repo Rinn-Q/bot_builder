@@ -139,13 +139,30 @@ export default function Container() {
       console.log(`Error fetching choice Data : ${error}`);
     }
   };
-  const addHandler = async () => {};
+  const addHandler = async (added: any) => {
+    const data = {
+      id: 1234,
+      choice_content: added.choice_content,
+      parent_id: added.parent_id,
+      children: [],
+    };
+    firstChoice.push(data);
+    setFirstChoice(firstChoice);
+  };
+  //   id: number;
+  //   choice_content: string;
+  //   parent_id: number;
+  //   children: Array<{
+  //     id: number;
+  //     choice_content: string;
+  //     parent_id: number;
+  //   }>;
 
   useEffect(() => {
     fetchChoiceData();
     fetchLastChoice(id);
     fetchAnswerData(id2);
-  }, [id, id2, answer]);
+  }, [id, id2, firstChoice]);
 
   return (
     <div className="w-full h-full bg-slate-100">

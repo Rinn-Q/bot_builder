@@ -39,7 +39,7 @@ export default function DeleteChoice(props: DeleteChoiceProps) {
     //-----uildel logicuud -----
     try {
       const deletedData = fetch(
-        `https://ebdd-66-181-164-203.ngrok-free.app/api/choice/${props.id}`,
+        `https://a428-66-181-164-203.ngrok-free.app/api/choice/${props.id}`,
         {
           method: "DELETE",
           headers: {

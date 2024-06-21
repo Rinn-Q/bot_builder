@@ -26,17 +26,20 @@ export default function EditChoice(props: EditChoiceProps) {
   const handleClose = () => {
     setOpen(false);
     props.onClose();
+    setChoiceContent("");
   };
   // -------------------------------------BUTTON handlers-----------------------------------------------------
   const clickCancel = () => {
     setOpen(false);
     props.onClose();
+    setChoiceContent("");
   };
 
   const clickSave = () => {
     editDB();
     props.handleUpdate(choice_content);
     props.onClose();
+    setChoiceContent("");
   };
 
   const editDB = async () => {

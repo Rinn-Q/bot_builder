@@ -166,6 +166,7 @@ export default function Container() {
               onChoiceChange={handleIdChange}
               info={item}
               height={100}
+              handleDeleteChange={fetchChoiceData}
             />
           ))
         ) : (

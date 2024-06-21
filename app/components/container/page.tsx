@@ -155,31 +155,39 @@ export default function Container() {
   return (
     <div className="w-full h-full bg-slate-100">
       <div
-        className="rounded-xl box-shadow w-full h-1/2 mb-5 p-8 bg-white flex overflow-x-auto gap-5"
+        className="rounded-xl box-shadow w-full mb-5 p-8 bg-white"
         style={{ justifyContent: "flex-start" }}
       >
-        {firstChoice ? (
-          firstChoice.map((item) => (
-            <Choice
-              key={item.id}
-              width={32}
-              onChoiceChange={handleIdChange}
-              info={item}
-              height={100}
-              handleDeleteChange={fetchChoiceData}
-            />
-          ))
-        ) : (
-          <ChoiceSkelton />
-        )}
-        <div style={{ height: "40px", marginTop: "20px" }}>
-          <IconButton ref={anchorRef} sx={{ ml: 1 }} onClick={handleAddOpen}>
-            <AddIcon />
-          </IconButton>
+        <div className="flex justify-between">
+          <p className="font-bold text-2xl pb-4 h-1/2">Сонголтууд</p>
+          <div style={{ height: "40px", marginBottom: "20px" }}>
+            <IconButton ref={anchorRef} sx={{ ml: 1 }} onClick={handleAddOpen}>
+              <AddIcon />
+            </IconButton>
+          </div>
+        </div>
+        <div className="flex overflow-x-auto gap-5">
+          {firstChoice ? (
+            firstChoice.map((item) => (
+              <Choice
+                key={item.id}
+                width={32}
+                onChoiceChange={handleIdChange}
+                info={item}
+                height={100}
+                handleDeleteChange={fetchChoiceData}
+              />
+            ))
+          ) : (
+            <ChoiceSkelton />
+          )}
         </div>
       </div>
       <div className="rounded-xl w-full h-2/5 flex justify-between">
         <div className="box-shadow w-2/5 p-8 mr-10 rounded-xl bg-white">
+          <p className="font-bold text-2xl pb-4 font-sans pl-3">
+            Доторх сонголтууд
+          </p>
           {lastChoice ? (
             lastChoice.map((item) => (
               <Choice2
@@ -187,7 +195,7 @@ export default function Container() {
                 width={100}
                 onChoiceChange={handleIdChange2}
                 info={item}
-                height={100}
+                height={80}
               />
             ))
           ) : (
@@ -195,13 +203,14 @@ export default function Container() {
           )}
         </div>
         <div className="box-shadow w-3/5 p-8 rounded-xl bg-white">
+          <p className="font-bold text-2xl pb-4 ">Хариулт</p>
           {answer ? (
             <Answer
               handleDeleteChange={() => fetchLastChoice(id)}
               width={100}
               caption={answer.choice_content}
               description={answer.answer_content}
-              height={100}
+              height={80}
               id={answer.id}
               choice_id={answer.choice_id}
             />

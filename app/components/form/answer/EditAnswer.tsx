@@ -42,7 +42,7 @@ export default function EditAnswer(props: EditAnswerProps) {
     console.log(props.choice_id)
 
     try {
-      const updatedAnswerContent = await fetch(`https://9389-66-181-164-203.ngrok-free.app/api/answer/${props.id}`, {
+      const updatedAnswerContent = await fetch(`https://f900-66-181-164-203.ngrok-free.app/api/answer/${props.id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ export default function EditAnswer(props: EditAnswerProps) {
         })
       });
 
-      const updatedChoiceContent = await fetch(`https://9389-66-181-164-203.ngrok-free.app/api/choice/${props.choice_id}`, {
+      const updatedChoiceContent = await fetch(`https://f900-66-181-164-203.ngrok-free.app/api/choice/${props.choice_id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

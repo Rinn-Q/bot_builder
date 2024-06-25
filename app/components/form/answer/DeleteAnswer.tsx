@@ -42,7 +42,7 @@ export default function DeleteAnswer(props: DeleteAnswerProps) {
     //-----uildel logicuud -----
     try {
       const deletedData = fetch(
-        `https://9389-66-181-164-203.ngrok-free.app/api/answer/${props.id}`,
+        `https://f900-66-181-164-203.ngrok-free.app/api/answer/${props.id}`,
         {
           method: "DELETE",
           headers: {
@@ -51,7 +51,7 @@ export default function DeleteAnswer(props: DeleteAnswerProps) {
         }
       );
       const deletedChoice = fetch(
-        `https://9389-66-181-164-203.ngrok-free.app/api/choice/${props.choice_id}`,
+        `https://f900-66-181-164-203.ngrok-free.app/api/choice/${props.choice_id}`,
         {
           method: "DELETE",
           headers: {

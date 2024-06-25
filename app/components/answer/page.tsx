@@ -30,6 +30,10 @@ export default function Answer({
   const [currentCaption, setCurrentCaption] = useState(caption);
   const [currentDescription, setCurrentDescription] = useState(description);
 
+  const [currentAnswerId, setCurrentAnswerId] = useState(0);
+  const [currentChoiceId, setCurrentChoiceId] = useState(0);
+
+
   const [isEditAnswerOpen, setIsEditAnswerOpen] = useState(false);
   const [isDeleteAnswerOpen, setIsDeleteAnswerOpen] = useState(false);
 
@@ -40,6 +44,11 @@ export default function Answer({
     setCurrentCaption(caption);
     setCurrentDescription(description);
   }, [caption, description]);
+
+  useEffect(() => {
+    setCurrentAnswerId(id);;
+    setCurrentChoiceId(choice_id);
+  }, [id, choice_id]);
 
   const handleToggle = () => {
     setOpenPopup((prevOpen) => !prevOpen);
@@ -82,11 +91,15 @@ export default function Answer({
     setCurrentDescription("");
     handleDeleteChange();
   };
+
+  console.log("-------")
+  console.log(id);
+  console.log(choice_id);
   return (
     <>
       <EditAnswer
-        id={id}
-        choice_id={choice_id}
+        id={currentAnswerId}
+        choice_id={currentChoiceId}
         choice={currentCaption}
         answer={currentDescription}
         open={isEditAnswerOpen}

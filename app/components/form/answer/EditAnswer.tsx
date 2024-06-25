@@ -17,6 +17,10 @@ export default function EditAnswer(props: EditAnswerProps) {
   const [answerValue, setAnswerValue] = React.useState(answer);
   const [choiceValue, setChoiceValue] = React.useState(choice);
 
+  console.log("Edit answer::")
+  console.log(props.id, " shuu de ho ho ho ho");
+  console.log(props.choice_id);
+
   // Update local state when props change
   React.useEffect(() => {
     setAnswerValue(answer);
@@ -38,12 +42,10 @@ export default function EditAnswer(props: EditAnswerProps) {
   };
 
   const updateDB = async () => {
-    console.log(props.id, " shuu de ho ho ho ho");
-    console.log(props.choice_id);
 
     try {
       const response = await fetch(
-        `https://f900-66-181-164-203.ngrok-free.app/api/answer/${props.id}`,
+        `https://f900-66-181-164-203.ngrok-free.app/api/answer/${props.choice_id}`,
         {
           method: "GET",
           headers: {
@@ -83,10 +85,10 @@ export default function EditAnswer(props: EditAnswerProps) {
         );
         console.log(
           "Answer content :::::" +
-            (await updatedChoiceContent.json()) +
-            "\n" +
-            "Choice content :::::" +
-            (await updatedAnswerContent.json())
+          (await updatedChoiceContent.json()) +
+          "\n" +
+          "Choice content :::::" +
+          (await updatedAnswerContent.json())
         );
       } else {
         const createAnswerContent = await fetch(
@@ -118,10 +120,10 @@ export default function EditAnswer(props: EditAnswerProps) {
         );
         console.log(
           "Choice content :::::" +
-            updatedChoiceContent.json() +
-            "\n" +
-            "Answer content :::::" +
-            createAnswerContent.json()
+          updatedChoiceContent.json() +
+          "\n" +
+          "Answer content :::::" +
+          createAnswerContent.json()
         );
         console.log("Failed to update answer");
       }

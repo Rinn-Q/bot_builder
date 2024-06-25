@@ -52,6 +52,7 @@ export default function Container() {
     setID2(value);
   };
 
+  console.log("answer:", answer);
   const fetchChoiceData = async () => {
     try {
       const res = await fetch(
@@ -210,7 +211,7 @@ export default function Container() {
               description={answer.answer_content}
               height={80}
               id={answer.id}
-              choice_id={answer.choice_id}
+              choice_id={id2}
             />
           ) : (
             <AnswerSkelton />

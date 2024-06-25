@@ -42,41 +42,89 @@ export default function EditAnswer(props: EditAnswerProps) {
     console.log(props.choice_id);
 
     try {
-      const updatedAnswerContent = await fetch(
+      const response = await fetch(
         `https://f900-66-181-164-203.ngrok-free.app/api/answer/${props.id}`,
         {
-          method: "PATCH",
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
             "ngrok-skip-browser-warning": "true",
           },
-          body: JSON.stringify({
-            new_answer_content: answerValue,
-          }),
         }
       );
+      console.log(response.status);
 
-      const updatedChoiceContent = await fetch(
-        `https://f900-66-181-164-203.ngrok-free.app/api/choice/${props.choice_id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            "ngrok-skip-browser-warning": "true",
-          },
-          body: JSON.stringify({
-            new_choice_content: choiceValue,
-          }),
-        }
-      );
-
-      console.log(
-        "Answer content :::::" +
-          (await updatedChoiceContent.json()) +
-          "\n" +
+      if (response.status !== 404) {
+        const updatedAnswerContent = await fetch(
+          `https://f900-66-181-164-203.ngrok-free.app/api/answer/${props.id}`,
+          {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+              "ngrok-skip-browser-warning": "true",
+            },
+            body: JSON.stringify({
+              new_answer_content: answerValue,
+            }),
+          }
+        );
+        const updatedChoiceContent = await fetch(
+          `https://f900-66-181-164-203.ngrok-free.app/api/choice/${props.choice_id}`,
+          {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+              "ngrok-skip-browser-warning": "true",
+            },
+            body: JSON.stringify({
+              new_choice_content: choiceValue,
+            }),
+          }
+        );
+        console.log(
+          "Answer content :::::" +
+            (await updatedChoiceContent.json()) +
+            "\n" +
+            "Choice content :::::" +
+            (await updatedAnswerContent.json())
+        );
+      } else {
+        const createAnswerContent = await fetch(
+          `https://f900-66-181-164-203.ngrok-free.app/api/answer`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "ngrok-skip-browser-warning": "true",
+            },
+            body: JSON.stringify({
+              answer_content: answerValue,
+              choice_id: props.choice_id,
+            }),
+          }
+        );
+        const updatedChoiceContent = await fetch(
+          `https://f900-66-181-164-203.ngrok-free.app/api/choice/${props.choice_id}`,
+          {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+              "ngrok-skip-browser-warning": "true",
+            },
+            body: JSON.stringify({
+              new_choice_content: choiceValue,
+            }),
+          }
+        );
+        console.log(
           "Choice content :::::" +
-          (await updatedAnswerContent.json())
-      );
+            updatedChoiceContent.json() +
+            "\n" +
+            "Answer content :::::" +
+            createAnswerContent.json()
+        );
+        console.log("Failed to update answer");
+      }
     } catch (error) {
       console.error(error);
     }

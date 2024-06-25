@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import "./rating.css";
 
 const getRating = async () => {
-    const rating = await fetch("https://9389-66-181-164-203.ngrok-free.app/api/rating", {
+    const rating = await fetch("https://f900-66-181-164-203.ngrok-free.app/api/rating", {
         method: "GET"
     });
 

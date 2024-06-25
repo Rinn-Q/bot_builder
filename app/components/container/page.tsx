@@ -55,7 +55,7 @@ export default function Container() {
   const fetchChoiceData = async () => {
     try {
       const res = await fetch(
-        `https://9389-66-181-164-203.ngrok-free.app/api/choice/parent/1`,
+        `https://f900-66-181-164-203.ngrok-free.app/api/choice/parent/1`,
         {
           headers: {
             "ngrok-skip-browser-warning": "true",
@@ -78,7 +78,7 @@ export default function Container() {
   const fetchLastChoice = async (id: number) => {
     try {
       const res = await fetch(
-        `https://9389-66-181-164-203.ngrok-free.app/api/choice/${id}`,
+        `https://f900-66-181-164-203.ngrok-free.app/api/choice/${id}`,
         {
           headers: {
             "ngrok-skip-browser-warning": "true",
@@ -101,7 +101,7 @@ export default function Container() {
   const fetchAnswerData = async (id: number) => {
     try {
       const res = await fetch(
-        `https://9389-66-181-164-203.ngrok-free.app/api/answer/${id}`,
+        `https://f900-66-181-164-203.ngrok-free.app/api/answer/${id}`,
         {
           headers: {
             "ngrok-skip-browser-warning": "true",
@@ -110,7 +110,7 @@ export default function Container() {
         }
       );
       const choiceres = await fetch(
-        `https://9389-66-181-164-203.ngrok-free.app/api/choice/${id}`,
+        `https://f900-66-181-164-203.ngrok-free.app/api/choice/${id}`,
         {
           headers: {
             "ngrok-skip-browser-warning": "true",

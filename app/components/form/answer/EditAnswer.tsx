@@ -42,26 +42,32 @@ export default function EditAnswer(props: EditAnswerProps) {
     console.log(props.choice_id);
 
     try {
-      const updatedAnswerContent = await fetch(`https://f900-66-181-164-203.ngrok-free.app/api/answer/${props.id}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          'ngrok-skip-browser-warning': 'true'
-        },
-        body: JSON.stringify({
-          new_answer_content: answerValue,
-        })
-      });
+      const updatedAnswerContent = await fetch(
+        `https://f900-66-181-164-203.ngrok-free.app/api/answer/${props.id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "true",
+          },
+          body: JSON.stringify({
+            new_answer_content: answerValue,
+          }),
+        }
+      );
 
-      const updatedChoiceContent = await fetch(`https://f900-66-181-164-203.ngrok-free.app/api/choice/${props.choice_id}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          'ngrok-skip-browser-warning': 'true'
-        },
-        body: JSON.stringify({
-          new_choice_content: choiceValue,
-        })
+      const updatedChoiceContent = await fetch(
+        `https://f900-66-181-164-203.ngrok-free.app/api/choice/${props.choice_id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "true",
+          },
+          body: JSON.stringify({
+            new_choice_content: choiceValue,
+          }),
+        }
       );
 
       console.log(
